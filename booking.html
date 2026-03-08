@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>
+      Book Cleaning &amp; Fumigation Services in Abuja | Sonsek Cleaning
+    </title>
+    <meta
+      name="description"
+      content="Book professional house cleaning, office cleaning, fumigation, pest control, and deep cleaning services in Abuja with Sonsek Cleaning &amp; Fumigation Services."
+    />
+    <link rel="canonical" href="https://www.sonsekcleaning.com/booking.html" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Book Cleaning &amp; Fumigation Services in Abuja"
+    />
+    <meta
+      property="og:description"
+      content="Secure online booking and payments for cleaning and fumigation services in Abuja, Nigeria."
+    />
+    <meta
+      property="og:url"
+      content="https://www.sonsekcleaning.com/booking.html"
+    />
+    <meta name="theme-color" content="#0f9bdb" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body class="page">
+    <header class="site-header">
+      <div class="container">
+        <nav class="nav">
+          <a href="index.html" class="nav-brand">
+            <div class="nav-logo">S</div>
+            <div class="nav-title">
+              <span class="nav-title-main">Sonsek Cleaning</span>
+              <span class="nav-title-sub">Cleaning &amp; Fumigation, Abuja</span>
+            </div>
+          </a>
+
+          <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="services.html">Services</a>
+            <a href="reviews.html">Reviews</a>
+            <a href="contact.html">Contact</a>
+          </div>
+
+          <div class="nav-cta">
+            <div class="nav-phone">
+              <span>Call us:</span>
+              <strong>0902 452 4116</strong>
+            </div>
+            <a href="booking.html" class="btn btn-primary btn-sm">
+              Book a Cleaning
+            </a>
+          </div>
+
+          <button class="nav-toggle" aria-label="Toggle navigation">
+            <span></span>
+          </button>
+        </nav>
+
+        <div class="nav-links-mobile">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="services.html">Services</a>
+          <a href="reviews.html">Reviews</a>
+          <a href="contact.html">Contact</a>
+          <a href="booking.html" class="btn btn-primary btn-sm">Book Now</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="page-hero">
+        <div class="container">
+          <div class="breadcrumb">
+            <a href="index.html">Home</a> • Book a service
+          </div>
+          <h1 class="page-title">Book cleaning &amp; fumigation online</h1>
+          <p class="page-subtitle">
+            Complete the form below to request a booking. Our team will confirm
+            your details, pricing, and schedule via call or WhatsApp.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container content-grid">
+          <article class="card">
+            <h2 class="card-title">Booking / request service form</h2>
+            <p class="card-subtitle">
+              All fields marked with * are required so we can serve you faster.
+            </p>
+
+            <form
+              data-ajax-form
+              data-endpoint="/api/booking"
+              aria-label="Service booking form"
+            >
+              <div class="form-row">
+                <div class="form-control">
+                  <label class="form-label" for="booking-name"
+                    >Full name*</label
+                  >
+                  <input
+                    id="booking-name"
+                    class="form-input"
+                    name="name"
+                    required
+                    placeholder="Your full name"
+                    data-name-field
+                  />
+                </div>
+                <div class="form-control">
+                  <label class="form-label" for="booking-phone"
+                    >Phone number*</label
+                  >
+                  <input
+                    id="booking-phone"
+                    class="form-input"
+                    name="phone"
+                    required
+                    placeholder="Your phone number"
+                  />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-control">
+                  <label class="form-label" for="booking-email">Email</label>
+                  <input
+                    id="booking-email"
+                    class="form-input"
+                    type="email"
+                    name="email"
+                    placeholder="you@example.com"
+                    data-email-field
+                  />
+                </div>
+                <div class="form-control">
+                  <label class="form-label" for="booking-date"
+                    >Preferred date*</label
+                  >
+                  <input
+                    id="booking-date"
+                    class="form-input"
+                    type="date"
+                    name="preferredDate"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="form-control">
+                <label class="form-label" for="booking-address"
+                  >Service address in Abuja*</label
+                >
+                <input
+                  id="booking-address"
+                  class="form-input"
+                  name="address"
+                  required
+                  placeholder="Full address including estate/area in Abuja"
+                />
+              </div>
+
+              <div class="form-control">
+                <label class="form-label" for="booking-service"
+                  >Type of service*</label
+                >
+                <select
+                  id="booking-service"
+                  class="form-select"
+                  name="serviceType"
+                  required
+                >
+                  <option value="">Select a service</option>
+                  <option value="House cleaning">House cleaning</option>
+                  <option value="Office cleaning">Office cleaning</option>
+                  <option value="Fumigation">Fumigation</option>
+                  <option value="Pest control">Pest control</option>
+                  <option value="Deep cleaning">Deep cleaning</option>
+                  <option value="Post-construction cleaning">
+                    Post-construction cleaning
+                  </option>
+                  <option value="Combined cleaning &amp; fumigation">
+                    Combined cleaning &amp; fumigation
+                  </option>
+                </select>
+              </div>
+
+              <div class="form-row">
+                <div class="form-control">
+                  <label class="form-label" for="booking-size"
+                    >Size of space</label
+                  >
+                  <input
+                    id="booking-size"
+                    class="form-input"
+                    name="spaceSize"
+                    placeholder="e.g. 3-bedroom flat, small office, shop"
+                  />
+                </div>
+                <div class="form-control">
+                  <label class="form-label" for="booking-budget"
+                    >Estimated budget (₦)</label
+                  >
+                  <input
+                    id="booking-budget"
+                    class="form-input"
+                    name="amount"
+                    type="number"
+                    min="0"
+                    step="1000"
+                    placeholder="Optional"
+                    data-amount-field
+                  />
+                </div>
+              </div>
+
+              <div class="form-control">
+                <label class="form-label" for="booking-message"
+                  >Additional details</label
+                >
+                <textarea
+                  id="booking-message"
+                  class="form-textarea"
+                  name="message"
+                  placeholder="Any special instructions, parking notes, pets in the home, preferred time of day..."
+                ></textarea>
+              </div>
+
+              <div class="form-footer">
+                <button type="submit" class="btn btn-primary btn-sm">
+                  Submit booking request
+                </button>
+                <div class="form-status" data-form-status>
+                  We’ll confirm by phone or WhatsApp.
+                </div>
+              </div>
+            </form>
+          </article>
+
+          <aside class="card">
+            <h2 class="card-title">Secure online payment (optional)</h2>
+            <p class="card-subtitle">
+              Prefer to pay online? You can pay a deposit or full amount now
+              using our secure payment partners.
+            </p>
+            <ul class="list-check">
+              <li><span>✓</span><span>Paystack (NGN cards &amp; transfers)</span></li>
+              <li><span>✓</span><span>Flutterwave (optional setup)</span></li>
+              <li><span>✓</span><span>Instant confirmation</span></li>
+            </ul>
+
+            <div class="form-control">
+              <label class="form-label" for="pay-amount"
+                >Amount to pay now (₦)</label
+              >
+              <input
+                id="pay-amount"
+                class="form-input"
+                type="number"
+                min="1000"
+                step="500"
+                placeholder="e.g. 10000"
+                data-amount-field
+              />
+              <p class="form-helper">
+                Enter an amount and click “Pay with Paystack”. You’ll receive a
+                payment receipt instantly.
+              </p>
+            </div>
+
+            <button
+              class="btn btn-primary btn-sm"
+              data-paystack-button
+              data-email-field="booking-email"
+            >
+              Pay with Paystack
+            </button>
+
+            <p class="form-helper">
+              You can also choose to
+              <strong>pay after service</strong> (subject to agreement) or via
+              bank transfer – our team will share details when confirming your
+              booking.
+            </p>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <div class="footer-logo">
+              <div class="footer-logo-badge">S</div>
+              <div>
+                <div>Sonsek Cleaning &amp; Fumigation Services</div>
+                <div class="footer-meta">
+                  Professional cleaning &amp; fumigation services in Abuja, FCT.
+                </div>
+              </div>
+            </div>
+            <p class="footer-meta">
+              Trusted 24/7 cleaning partner for homes, offices, and facilities
+              in Nyanya and across Abuja. Safe products, vetted staff, and
+              visible results after every visit.
+            </p>
+          </div>
+
+          <div>
+            <div class="footer-heading">Quick links</div>
+            <ul class="footer-links">
+              <li><a href="about.html">About us</a></li>
+              <li><a href="services.html">Our services</a></li>
+              <li><a href="booking.html">Book a service</a></li>
+              <li><a href="reviews.html">Customer reviews</a></li>
+              <li><a href="contact.html">Contact &amp; location</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <div class="footer-heading">Contact</div>
+            <ul class="footer-contact">
+              <li>
+                Phone:
+                <a href="tel:09024524116">0902 452 4116</a>
+              </li>
+              <li>Email: info@sonsekcleaning.com</li>
+              <li>Support: support@sonsekcleaning.com</li>
+              <li>Location: Nyanya, Abuja, FCT</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <div>
+            &copy; <span id="year"></span> Sonsek Cleaning &amp; Fumigation
+            Services. All rights reserved.
+          </div>
+          <div class="footer-policies">
+            <span>Secure HTTPS • SSL enabled (via hosting)</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <div class="whatsapp-float">
+      <button
+        class="whatsapp-button"
+        data-whatsapp-button
+        data-phone="2349024524116"
+      >
+        <span>💬</span>
+        <span>Chat on WhatsApp</span>
+      </button>
+    </div>
+
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+      document.getElementById("year").textContent =
+        new Date().getFullYear().toString();
+    </script>
+  </body>
+</html>
+
