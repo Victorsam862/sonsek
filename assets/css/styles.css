@@ -89,14 +89,7 @@ a {
   width: 42px;
   height: 42px;
   border-radius: 14px;
-  background: radial-gradient(circle at 20% 0, #e0f6ff 0, #0f9bdb 55%, #0076a8);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-white);
-  font-weight: 800;
-  font-size: 1.15rem;
-  box-shadow: 0 10px 25px rgba(15, 155, 219, 0.4);
+  object-fit: contain;
 }
 
 .nav-title {
@@ -170,46 +163,87 @@ a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.6rem 1.4rem;
+  gap: 0.4rem;
+  padding: 0.65rem 1.6rem;
   border-radius: var(--radius-pill);
   border: none;
   cursor: pointer;
   font-weight: 600;
   font-size: 0.9rem;
-  transition: transform var(--transition-fast),
-    box-shadow var(--transition-fast), background-color var(--transition-fast),
-    color var(--transition-fast);
+  letter-spacing: 0.025em;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.22s ease,
+              background-color 0.22s ease,
+              color 0.22s ease;
+}
+
+/* Shimmer sweep on hover */
+.btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.18) 50%,
+    transparent 65%
+  );
+  transform: translateX(-100%);
+  transition: transform 0.45s ease;
+  pointer-events: none;
+}
+
+.btn:hover::after {
+  transform: translateX(100%);
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  background: linear-gradient(135deg, #1aabeb 0%, #0f9bdb 40%, #35b26f 100%);
   color: var(--color-white);
-  box-shadow: var(--shadow-soft);
+  box-shadow: 0 4px 14px rgba(15, 155, 219, 0.35),
+              0 1px 3px rgba(0, 0, 0, 0.12),
+              inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .btn-primary:hover {
-  transform: translateY(-1px);
-  background: linear-gradient(
-    135deg,
-    var(--color-primary-dark),
-    var(--color-accent-dark)
-  );
-  box-shadow: 0 16px 40px rgba(15, 155, 219, 0.4);
+  transform: translateY(-2px) scale(1.01);
+  background: linear-gradient(135deg, #0f9bdb 0%, #0076a8 40%, #279054 100%);
+  box-shadow: 0 8px 24px rgba(15, 155, 219, 0.45),
+              0 2px 6px rgba(0, 0, 0, 0.15),
+              inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.btn-primary:active {
+  transform: translateY(0) scale(0.99);
+  box-shadow: 0 2px 8px rgba(15, 155, 219, 0.3);
 }
 
 .btn-outline {
   background: transparent;
-  border: 1px solid rgba(15, 155, 219, 0.3);
+  border: 1.5px solid rgba(15, 155, 219, 0.4);
   color: var(--color-primary-dark);
+  box-shadow: 0 2px 8px rgba(15, 155, 219, 0.08),
+              inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
 .btn-outline:hover {
   background: rgba(15, 155, 219, 0.06);
+  border-color: rgba(15, 155, 219, 0.65);
+  transform: translateY(-1px);
+  box-shadow: 0 5px 16px rgba(15, 155, 219, 0.15),
+              inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.btn-outline:active {
+  transform: translateY(0);
 }
 
 .btn-sm {
-  padding: 0.4rem 1rem;
+  padding: 0.42rem 1.05rem;
   font-size: 0.8rem;
+  letter-spacing: 0.02em;
 }
 
 .nav-toggle {
@@ -875,31 +909,65 @@ a {
   color: var(--color-text);
 }
 
+/* ── Social icons ──────────────────────────────────────────────────────────
+   Replaces the old single .social-icon rule so each brand gets its own
+   background colour while keeping the same layout. The old rule used a
+   generic blue tint; that is superseded here.                              */
+
 .social-row {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-  margin-top: 0.25rem;
+  gap: 0.55rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.social-row > span {
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  margin-right: 0.1rem;
 }
 
 .social-icon {
-  width: 34px;
-  height: 34px;
-  border-radius: 999px;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(15, 155, 219, 0.06);
-  color: var(--color-primary-dark);
-  font-size: 0.85rem;
-  transition: background-color var(--transition-fast),
-    transform var(--transition-fast);
+  text-decoration: none;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+  flex-shrink: 0;
 }
 
 .social-icon:hover {
-  background: rgba(15, 155, 219, 0.14);
-  transform: translateY(-1px);
+  opacity: 0.88;
+  transform: translateY(-2px);
 }
+
+.social-icon svg {
+  width: 19px;
+  height: 19px;
+  fill: #ffffff;
+  display: block;
+}
+
+.social-icon--facebook  { background: #1877f2; }
+
+.social-icon--instagram {
+  background: radial-gradient(
+    circle at 30% 107%,
+    #fdf497 0%,
+    #fdf497 5%,
+    #fd5949 45%,
+    #d6249f 60%,
+    #285aeb 90%
+  );
+}
+
+.social-icon--whatsapp  { background: #25d366; }
+
+/* ── Map embed ─────────────────────────────────────────────────────────── */
 
 .map-embed {
   border-radius: var(--radius-lg);
@@ -931,23 +999,43 @@ a {
   font-size: 0.86rem;
 }
 
+/* ── Footer logo ───────────────────────────────────────────────────────────
+   The old .footer-logo-badge "S" placeholder is replaced with the actual
+   logo image (assets/img/image.png). These rules handle sizing & layout.  */
+
 .footer-logo {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 0.4rem;
+  gap: 0.65rem;
+  margin-bottom: 0.5rem;
 }
 
-.footer-logo-badge {
-  width: 38px;
-  height: 38px;
-  border-radius: 14px;
-  background: radial-gradient(circle at 20% 0, #e0f6ff 0, #0f9bdb 55%, #0076a8);
+.footer-logo-img {
+  height: 42px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  flex-shrink: 0;
+  /* Slight brightness boost so logo reads well on the dark footer bg */
+  filter: brightness(1.05);
+}
+
+.footer-logo-text-wrap {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 800;
-  font-size: 1rem;
+  flex-direction: column;
+  gap: 2px;
+  line-height: 1.25;
+}
+
+.footer-logo-name {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.footer-logo-sub {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .footer-meta {
@@ -998,30 +1086,91 @@ a {
   gap: 0.75rem;
 }
 
-/* Floating WhatsApp */
+/* ── Floating WhatsApp button ───────────────────────────────────────────────
+   Refined pill with frosted icon circle, glow shadow, and icon-only
+   collapse on small screens.                                               */
 
 .whatsapp-float {
   position: fixed;
-  right: 1rem;
-  bottom: 1.25rem;
+  right: 1.25rem;
+  bottom: 1.4rem;
   z-index: 40;
 }
 
 .whatsapp-button {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  padding: 0.55rem 0.9rem;
+  gap: 0.55rem;
+  padding: 0.7rem 1.1rem 0.7rem 0.65rem;
   border-radius: 999px;
-  background: linear-gradient(135deg, #22c35e, #128c7e);
+  background: #25d366;
   color: #ffffff;
+  font-family: inherit;
   font-size: 0.85rem;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  border: none;
   cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 6px 22px rgba(37, 211, 102, 0.42),
+              0 2px 8px rgba(0, 0, 0, 0.16);
+  transition: background var(--transition-fast),
+              box-shadow var(--transition-fast),
+              transform var(--transition-fast);
+  white-space: nowrap;
 }
 
-.whatsapp-button span {
-  font-size: 1.1rem;
+.whatsapp-button:hover {
+  background: #1ebe5d;
+  box-shadow: 0 10px 30px rgba(37, 211, 102, 0.52),
+              0 2px 10px rgba(0, 0, 0, 0.18);
+  transform: translateY(-2px);
+}
+
+.whatsapp-button:active {
+  transform: translateY(0);
+}
+
+.whatsapp-button__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.22);
+  flex-shrink: 0;
+}
+
+.whatsapp-button__icon svg {
+  width: 15px;
+  height: 15px;
+  fill: #ffffff;
+  display: block;
+}
+
+/* Icon-only on small screens */
+@media (max-width: 480px) {
+  .whatsapp-button {
+    padding: 0.75rem;
+    border-radius: 50%;
+    gap: 0;
+  }
+
+  .whatsapp-button__text {
+    display: none;
+  }
+
+  .whatsapp-button__icon {
+    background: transparent;
+    width: 24px;
+    height: 24px;
+  }
+
+  .whatsapp-button__icon svg {
+    width: 22px;
+    height: 22px;
+  }
 }
 
 /* Page-specific */
@@ -1086,30 +1235,43 @@ a {
   gap: 0.6rem;
 }
 
-/* Responsive styles */
+/* =============================================================================
+   RESPONSIVE STYLES
+   Breakpoints tested: 1280 / 960 / 768 / 480 / 360 / 320 px
+============================================================================= */
 
+/* ── Tablet landscape (≤ 960px) ─────────────────────────────────────────── */
 @media (max-width: 960px) {
   .hero-grid {
     grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-    gap: 2rem;
+    gap: 1.75rem;
   }
 
   .services-grid,
   .results-grid,
   .testimonials-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.1rem;
   }
 
   .content-grid {
     grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    gap: 1.25rem;
   }
 
   .footer-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+
+  .section {
+    padding: 2.5rem 0;
   }
 }
 
+/* ── Tablet / mobile (≤ 768px) ───────────────────────────────────────────── */
 @media (max-width: 768px) {
+  /* Navigation */
   .nav-links,
   .nav-cta {
     display: none;
@@ -1119,59 +1281,279 @@ a {
     display: block;
   }
 
-  .nav-links-mobile {
-    display: flex;
+  .nav-title-sub {
+    display: none;
   }
 
+  .nav-links-mobile {
+    display: none;
+    border-top: 1px solid rgba(15, 155, 219, 0.08);
+    padding: 1rem 0.5rem 1.25rem;
+    gap: 0.9rem;
+  }
+
+  .nav-links-mobile .btn {
+    width: 100%;
+    justify-content: center;
+    padding: 0.7rem 1.25rem;
+    font-size: 0.9rem;
+    margin-top: 0.25rem;
+    min-height: 44px;
+  }
+
+  /* Hero */
   .hero {
-    padding-top: 2.2rem;
+    padding: 2rem 0;
   }
 
   .hero-grid {
     grid-template-columns: minmax(0, 1fr);
+    gap: 0;
   }
 
-  .hero-card {
-    order: -1;
+  .hero-eyebrow {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.6rem;
+    white-space: normal;
+    text-align: left;
   }
 
-  .form-row {
-    grid-template-columns: minmax(0, 1fr);
+  .hero-title {
+    font-size: clamp(1.7rem, 5vw + 0.5rem, 2.4rem);
+    margin: 0.75rem 0 0.6rem;
   }
 
+  .hero-subtitle {
+    font-size: 0.92rem;
+    max-width: 100%;
+  }
+
+  .hero-badges {
+    gap: 0.5rem;
+    margin: 1rem 0;
+  }
+
+  /* Hero CTA buttons: full-width stack */
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.65rem;
+    margin-top: 1rem;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    justify-content: center;
+    padding: 0.75rem 1.25rem;
+    font-size: 0.9rem;
+    min-height: 44px;
+  }
+
+  .hero-contact-badge {
+    font-size: 0.72rem;
+    flex-wrap: wrap;
+    max-width: 100%;
+    margin-top: 0.65rem;
+    line-height: 1.5;
+  }
+
+  /* Sections */
+  .section {
+    padding: 2rem 0;
+  }
+
+  .section-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.3rem, 4vw + 0.4rem, 1.6rem);
+  }
+
+  .section-subtitle {
+    font-size: 0.88rem;
+    max-width: 100%;
+  }
+
+  /* All grids → single column */
   .services-grid,
   .results-grid,
   .testimonials-grid,
   .content-grid,
   .footer-grid {
     grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
   }
 
+  /* Service card CTA row: allow button to grow */
+  .service-cta {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .service-cta .btn {
+    flex: 1 1 auto;
+    min-width: 0;
+    justify-content: center;
+    white-space: nowrap;
+    min-height: 40px;
+  }
+
+  /* Forms */
+  .form-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+
+  /* Fix iOS Safari auto-zoom — inputs must be >= 16px on mobile */
+  .form-input,
+  .form-select,
+  .form-textarea {
+    font-size: 1rem;
+    padding: 0.65rem 0.8rem;
+  }
+
+  /* form-footer: stack so button and status text never overlap */
+  .form-footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.6rem;
+  }
+
+  .form-footer .btn {
+    width: 100%;
+    justify-content: center;
+    padding: 0.72rem 1.25rem;
+    font-size: 0.9rem;
+    min-height: 44px;
+  }
+
+  .form-status {
+    text-align: center;
+    font-size: 0.72rem;
+  }
+
+  /* Cards */
+  .card {
+    padding: 1.1rem 1rem;
+  }
+
+  /* Footer */
   .site-footer {
-    padding-top: 1.8rem;
+    padding: 1.75rem 0 1.4rem;
   }
 
   .footer-bottom {
     flex-direction: column;
     align-items: flex-start;
+    gap: 0.35rem;
   }
 
-  .whatsapp-button span:last-child {
-    display: none;
+  .footer-contact li {
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
 }
 
+/* ── Small mobile (≤ 480px) ──────────────────────────────────────────────── */
 @media (max-width: 480px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  /* Hero */
   .hero {
-    padding-top: 1.8rem;
+    padding: 1.5rem 0 1.75rem;
   }
 
   .hero-title {
-    font-size: 1.8rem;
+    font-size: clamp(1.55rem, 6vw + 0.2rem, 1.9rem);
   }
 
-  .hero-metrics {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .hero-badges .badge {
+    font-size: 0.72rem;
+    padding: 0.3rem 0.7rem;
+  }
+
+  /* Buttons: solid readable size on 320–480px */
+  .btn {
+    font-size: 0.88rem;
+    padding: 0.6rem 1.1rem;
+    min-height: 44px;
+  }
+
+  .btn-sm {
+    font-size: 0.82rem;
+    padding: 0.48rem 0.9rem;
+    min-height: 38px;
+  }
+
+  /* Sections */
+  .section {
+    padding: 1.6rem 0;
+  }
+
+  .section-title {
+    font-size: clamp(1.2rem, 5vw + 0.2rem, 1.4rem);
+  }
+
+  .section-header {
+    margin-bottom: 1.2rem;
+  }
+
+  /* Service cards */
+  .service-card {
+    padding: 1rem;
+  }
+
+  /* Results / testimonials */
+  .results-grid,
+  .testimonials-grid {
+    gap: 0.85rem;
+  }
+
+  .testimonial-card {
+    padding: 1rem;
+  }
+
+  /* Reviews summary: stack vertically */
+  .reviews-summary {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.65rem;
+  }
+
+  /* Contact card */
+  .card {
+    padding: 1rem 0.9rem;
+  }
+
+  /* Info list: label stacks above value on tiny screens */
+  .info-list li {
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .info-label {
+    min-width: unset;
+  }
+
+  /* Map: shorter on tiny screens */
+  .map-embed iframe {
+    min-height: 200px;
+  }
+
+  /* Footer logo */
+  .footer-logo {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .footer-logo-name {
+    font-size: 0.82rem;
+  }
+
+  .footer-logo-sub {
+    font-size: 0.65rem;
   }
 }
-

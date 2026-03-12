@@ -26,7 +26,7 @@
     />
     <meta
       property="og:description"
-      content="5.0 rated cleaning and fumigation company serving homes and offices across Abuja. Book a trusted cleaning team online in minutes."
+      content="4.5 star rated cleaning and fumigation company serving homes and offices across Abuja. Book a trusted cleaning team online in minutes."
     />
     <meta property="og:url" content="https://www.sonsekcleaning.com/" />
     <meta property="og:site_name" content="Sonsek Cleaning &amp; Fumigation" />
@@ -34,12 +34,19 @@
 
     <link rel="stylesheet" href="assets/css/styles.css" />
 
+    <style>
+      /* Hide the Quick Quote hero card when hero-grid collapses to single column.
+         styles.css switches to 1 column at 768px — we match that breakpoint. */
+      @media (max-width: 768px) {
+        .hero-card { display: none !important; }
+      }
+    </style>
+
     <script>
-      // Expose Paystack key from backend env (optional)
       window.PAYSTACK_PUBLIC_KEY = "{{PAYSTACK_PUBLIC_KEY}}";
     </script>
 
-    <!-- Structured data for LocalBusiness -->
+    <!-- Structured data -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -65,22 +72,14 @@
         "openingHoursSpecification": [
           {
             "@type": "OpeningHoursSpecification",
-            "dayOfWeek": [
-              "Monday",
-              "Tuesday",
-              "Wednesday",
-              "Thursday",
-              "Friday",
-              "Saturday",
-              "Sunday"
-            ],
+            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
             "opens": "00:00",
             "closes": "23:59"
           }
         ],
         "aggregateRating": {
           "@type": "AggregateRating",
-          "ratingValue": "5.0",
+          "ratingValue": "4.5",
           "reviewCount": "16"
         },
         "areaServed": {
@@ -90,20 +89,18 @@
         "sameAs": [
           "https://www.facebook.com/",
           "https://www.instagram.com/",
-          "https://wa.me/2349024524116",
-          "https://twitter.com/"
+          "https://wa.me/2349024524116"
         ]
       }
     </script>
   </head>
   <body class="page">
+
     <header class="site-header">
       <div class="container">
         <nav class="nav">
           <a href="index.html" class="nav-brand">
-                <img class="nav-logo m-5"
-                    src="assets/img/image.png"
-                />
+            <img class="nav-logo" src="assets/img/image.png" alt="Sonsek Cleaning logo" />
             <div class="nav-title">
               <span class="nav-title-main">Sonsek Cleaning</span>
               <span class="nav-title-sub">Cleaning &amp; Fumigation, Abuja</span>
@@ -123,9 +120,7 @@
               <span>Call us:</span>
               <strong>0902 452 4116</strong>
             </div>
-            <a href="booking.html" class="btn btn-primary btn-sm">
-              Book a Cleaning
-            </a>
+            <a href="booking.html" class="btn btn-primary btn-sm">Book a Cleaning</a>
           </div>
 
           <button class="nav-toggle" aria-label="Toggle navigation">
@@ -145,7 +140,8 @@
     </header>
 
     <main>
-      <!-- Hero -->
+
+      <!-- ── HERO ──────────────────────────────────────────────────────────── -->
       <section class="hero">
         <div class="container hero-grid">
           <div>
@@ -156,7 +152,7 @@
               </span>
               <span class="hero-rating">
                 <span class="hero-rating-stars">★★★★★</span>
-                <span>5.0</span>
+                <span>4.5</span>
               </span>
             </div>
 
@@ -189,14 +185,8 @@
             </div>
 
             <div class="hero-actions">
-              <a href="booking.html" class="btn btn-primary">
-                Book a Cleaning Service
-              </a>
-              <a
-                href="tel:09024524116"
-                class="btn btn-outline"
-                aria-label="Call Sonsek Cleaning"
-              >
+              <a href="booking.html" class="btn btn-primary">Book a Cleaning Service</a>
+              <a href="tel:09024524116" class="btn btn-outline" aria-label="Call Sonsek Cleaning">
                 Call 0902 452 4116
               </a>
             </div>
@@ -204,19 +194,18 @@
             <div class="hero-contact-badge">
               <span></span>
               <div>
-                Open 24 hours • Dunamis/Mummy Road Suite 30, Bello Plaza, Nyanya
-                – Abuja, FCT
+                Open 24 hours • Dunamis/Mummy Road Suite 30, Bello Plaza, Nyanya – Abuja, FCT
               </div>
             </div>
           </div>
 
+          <!-- Hidden at ≤768 px (single-column breakpoint) via patch styles above -->
           <aside class="hero-card">
             <div class="hero-card-header">
               <div>
                 <div class="hero-card-title">Quick quote in 30 seconds</div>
                 <div class="hero-card-sub">
-                  Tell us what you need cleaned, and we’ll call you back with a
-                  quote.
+                  Tell us what you need cleaned, and we'll call you back with a quote.
                 </div>
               </div>
               <div class="hero-tag">Abuja • Nyanya • FCT</div>
@@ -225,7 +214,7 @@
             <div class="hero-metrics">
               <div class="metric-card">
                 <div class="metric-label">Rating</div>
-                <div class="metric-value">5.0</div>
+                <div class="metric-value">4.5</div>
                 <div class="metric-footnote">Based on 16 Google reviews</div>
               </div>
               <div class="metric-card">
@@ -249,83 +238,51 @@
               <span>Post-construction</span>
             </div>
 
-            <form
-              class="hero-quick-form"
-              data-ajax-form
-              data-endpoint="/api/booking"
-            >
+            <form class="hero-quick-form" data-ajax-form data-endpoint="/api/booking">
               <div class="form-row">
                 <div class="form-control">
                   <label for="quick-name" class="form-label">Full name*</label>
-                  <input
-                    id="quick-name"
-                    name="name"
-                    required
-                    class="form-input"
-                    placeholder="e.g. Mrs. Ade Johnson"
-                  />
+                  <input id="quick-name" name="name" required class="form-input"
+                         placeholder="e.g. Mrs. Ade Johnson" />
                 </div>
                 <div class="form-control">
                   <label for="quick-phone" class="form-label">Phone*</label>
-                  <input
-                    id="quick-phone"
-                    name="phone"
-                    required
-                    class="form-input"
-                    placeholder="Your phone number"
-                  />
+                  <input id="quick-phone" name="phone" required class="form-input"
+                         placeholder="Your phone number" />
                 </div>
               </div>
 
               <div class="form-control">
-                <label for="quick-service" class="form-label"
-                  >What do you need cleaned?*</label
-                >
-                <select
-                  id="quick-service"
-                  name="serviceType"
-                  required
-                  class="form-select"
-                >
+                <label for="quick-service" class="form-label">What do you need cleaned?*</label>
+                <select id="quick-service" name="serviceType" required class="form-select">
                   <option value="">Select a service</option>
                   <option value="House cleaning">House cleaning</option>
                   <option value="Office cleaning">Office cleaning</option>
                   <option value="Fumigation">Fumigation</option>
                   <option value="Pest control">Pest control</option>
                   <option value="Deep cleaning">Deep cleaning</option>
-                  <option value="Post-construction cleaning">
-                    Post-construction cleaning
-                  </option>
+                  <option value="Post-construction cleaning">Post-construction cleaning</option>
                   <option value="Other">Other (describe below)</option>
                 </select>
               </div>
 
               <div class="form-control">
-                <label for="quick-message" class="form-label"
-                  >Tell us a bit more</label
-                >
-                <textarea
-                  id="quick-message"
-                  name="message"
-                  class="form-textarea"
-                  placeholder="Number of rooms, location in Abuja, preferred date..."
-                ></textarea>
+                <label for="quick-message" class="form-label">Tell us a bit more</label>
+                <textarea id="quick-message" name="message" class="form-textarea"
+                          placeholder="Number of rooms, location in Abuja, preferred date..."></textarea>
               </div>
 
               <div class="form-footer">
-                <button type="submit" class="btn btn-primary btn-sm">
-                  Request a Call Back
-                </button>
-                <div class="form-status" data-form-status>
-                  Fast response within minutes.
-                </div>
+                <button type="submit" class="btn btn-primary btn-sm">Request a Call Back</button>
+                <div class="form-status" data-form-status>Fast response within minutes.</div>
               </div>
             </form>
           </aside>
+
         </div>
       </section>
 
-      <!-- Services highlight -->
+      <!-- ── SERVICES HIGHLIGHT ─────────────────────────────────────────── -->
       <section class="section">
         <div class="container">
           <div class="section-header">
@@ -348,9 +305,7 @@
               </p>
               <div class="service-meta">Apartments • Duplexes • Estates</div>
               <div class="service-cta">
-                <a href="booking.html" class="btn btn-outline btn-sm"
-                  >Book now</a
-                >
+                <a href="booking.html" class="btn btn-outline btn-sm">Book now</a>
                 <span class="badge-soft">Regular &amp; one‑off cleaning</span>
               </div>
             </article>
@@ -364,9 +319,7 @@
               </p>
               <div class="service-meta">Flexible schedules • Night cleaning</div>
               <div class="service-cta">
-                <a href="booking.html" class="btn btn-outline btn-sm"
-                  >Request a quote</a
-                >
+                <a href="booking.html" class="btn btn-outline btn-sm">Request a quote</a>
               </div>
             </article>
 
@@ -379,9 +332,7 @@
               </p>
               <div class="service-meta">Eco‑friendly options available</div>
               <div class="service-cta">
-                <a href="services.html" class="btn btn-outline btn-sm"
-                  >View fumigation options</a
-                >
+                <a href="services.html" class="btn btn-outline btn-sm">View fumigation options</a>
               </div>
             </article>
 
@@ -394,9 +345,7 @@
               </p>
               <div class="service-meta">Move‑in / Move‑out ready</div>
               <div class="service-cta">
-                <a href="booking.html" class="btn btn-outline btn-sm"
-                  >Schedule deep clean</a
-                >
+                <a href="booking.html" class="btn btn-outline btn-sm">Schedule deep clean</a>
               </div>
             </article>
 
@@ -407,13 +356,9 @@
                 We remove cement dust, paint, debris, and stains so your new
                 property in Abuja is ready to hand over.
               </p>
-              <div class="service-meta">
-                Builders • Developers • Facility managers
-              </div>
+              <div class="service-meta">Builders • Developers • Facility managers</div>
               <div class="service-cta">
-                <a href="booking.html" class="btn btn-outline btn-sm"
-                  >Get a site visit</a
-                >
+                <a href="booking.html" class="btn btn-outline btn-sm">Get a site visit</a>
               </div>
             </article>
 
@@ -426,23 +371,21 @@
               </p>
               <div class="service-meta">Monthly &amp; quarterly plans</div>
               <div class="service-cta">
-                <a href="contact.html" class="btn btn-outline btn-sm"
-                  >Talk to our team</a
-                >
+                <a href="contact.html" class="btn btn-outline btn-sm">Talk to our team</a>
               </div>
             </article>
           </div>
         </div>
       </section>
 
-      <!-- Recent results / previous jobs -->
+      <!-- ── RECENT RESULTS ─────────────────────────────────────────────── -->
       <section class="section">
         <div class="container">
           <div class="section-header">
             <div class="section-eyebrow">Recent Cleaning Transformations</div>
             <h2 class="section-title">See what Sonsek has cleaned recently</h2>
             <p class="section-subtitle">
-              A snapshot of real jobs we’ve completed across Abuja – from
+              A snapshot of real jobs we've completed across Abuja – from
               outdoor tiles and driveways to offices, carpets, and VIP spaces.
             </p>
           </div>
@@ -451,102 +394,72 @@
             <article class="result-card">
               <div class="result-image-wrapper">
                 <span class="result-tag">Before &amp; After</span>
-                <img
-                  src="assets/img/sonsek-before-after-walkway-1.png.jpg"
-                  alt="Before and after cleaning of an outdoor walkway in Abuja"
-                />
+                <img src="assets/img/sonsek-before-after-walkway-1.png.jpg"
+                     alt="Before and after cleaning of an outdoor walkway in Abuja" />
               </div>
               <div class="result-body">
                 <h3 class="result-title">Outdoor walkway deep cleaning</h3>
-                <p class="result-meta">
-                  Heavy dirt and stains removed from a tiled walkway, leaving a
-                  bright, welcoming entrance.
-                </p>
+                <p class="result-meta">Heavy dirt and stains removed from a tiled walkway, leaving a bright, welcoming entrance.</p>
               </div>
             </article>
 
             <article class="result-card">
               <div class="result-image-wrapper">
                 <span class="result-tag">Before &amp; After</span>
-                <img
-                  src="assets/img/sonsek-before-after-wall-2.png.jpg"
-                  alt="Before and after cleaning of an exterior wall and tiles"
-                />
+                <img src="assets/img/sonsek-before-after-wall-2.png.jpg"
+                     alt="Before and after cleaning of an exterior wall and tiles" />
               </div>
               <div class="result-body">
                 <h3 class="result-title">Exterior wall &amp; tile restoration</h3>
-                <p class="result-meta">
-                  Weathered wall tiles restored to their original shine with
-                  professional cleaning.
-                </p>
+                <p class="result-meta">Weathered wall tiles restored to their original shine with professional cleaning.</p>
               </div>
             </article>
 
             <article class="result-card">
               <div class="result-image-wrapper">
                 <span class="result-tag">Upholstery</span>
-                <img
-                  src="assets/img/sonsek-upholstery-cleaning-3.png.jpg"
-                  alt="Technician cleaning upholstered chairs in a living room"
-                />
+                <img src="assets/img/sonsek-upholstery-cleaning-3.png.jpg"
+                     alt="Technician cleaning upholstered chairs in a living room" />
               </div>
               <div class="result-body">
                 <h3 class="result-title">Upholstery &amp; furniture care</h3>
-                <p class="result-meta">
-                  Gentle cleaning of sofas and chairs to remove dust, stains,
-                  and odours while protecting the fabric.
-                </p>
+                <p class="result-meta">Gentle cleaning of sofas and chairs to remove dust, stains, and odours while protecting the fabric.</p>
               </div>
             </article>
 
             <article class="result-card">
               <div class="result-image-wrapper">
                 <span class="result-tag">Floor Care</span>
-                <img
-                  src="assets/img/sonsek-machine-scrubbing-4.png.jpg"
-                  alt="Team using machines to scrub and wash outdoor paving"
-                />
+                <img src="assets/img/sonsek-machine-scrubbing-4.png.jpg"
+                     alt="Team using machines to scrub and wash outdoor paving" />
               </div>
               <div class="result-body">
                 <h3 class="result-title">Machine scrubbing of driveways</h3>
-                <p class="result-meta">
-                  Mechanical scrubbing and washing of paved surfaces for a
-                  deeper, longer-lasting clean.
-                </p>
+                <p class="result-meta">Mechanical scrubbing and washing of paved surfaces for a deeper, longer-lasting clean.</p>
               </div>
             </article>
 
             <article class="result-card">
               <div class="result-image-wrapper">
                 <span class="result-tag">Carpet Rescue</span>
-                <img
-                  src="assets/img/sonsek-after-party-carpet-5.png.jpg"
-                  alt="Cleaner smiling with a carpet stain removed after a party"
-                />
+                <img src="assets/img/sonsek-after-party-carpet-5.png.jpg"
+                     alt="Cleaner smiling with a carpet stain removed after a party" />
               </div>
               <div class="result-body">
                 <h3 class="result-title">After party carpet cleaning</h3>
-                <p class="result-meta">
-                  Tough drink spills and party stains treated to bring carpets
-                  back to life.
-                </p>
+                <p class="result-meta">Tough drink spills and party stains treated to bring carpets back to life.</p>
               </div>
             </article>
 
             <article class="result-card">
               <div class="result-image-wrapper">
                 <span class="result-tag">Corporate</span>
-                <img
-                  src="assets/img/sonsek-boardroom-cleaning-6.png.jpg"
-                  alt="Team cleaning a large boardroom and conference chairs"
-                />
+                <img src="assets/img/sonsek-boardroom-cleaning-6.png.jpg"
+                     alt="Team cleaning a large boardroom and conference chairs" />
               </div>
               <div class="result-body">
                 <h3 class="result-title">Executive boardroom detailing</h3>
-                <p class="result-meta">
-                  Professional cleaning for high-profile meeting rooms, keeping
-                  every surface spotless and presentable.
-                </p>
+                <p class="result-meta">Professional cleaning for high-profile meeting rooms, keeping every surface spotless and presentable.</p>
               </div>
             </article>
           </div>
@@ -564,108 +477,73 @@
             <article class="result-card">
               <div class="result-image-wrapper">
                 <span class="result-tag">Project clip 1</span>
-                <video
-                  src="assets/vid/sonsek vid4.mp4"
-                  controls
-                  muted
-                  playsinline
-                ></video>
+                <video src="assets/vid/sonsek vid4.mp4" controls muted playsinline></video>
               </div>
               <div class="result-body">
                 <h3 class="result-title">Deep cleaning in progress</h3>
-                <p class="result-meta">
-                    Behind-the-scenes look at the Sonsek team working on a
-                    cleaning job.
-                </p>
+                <p class="result-meta">Behind-the-scenes look at the Sonsek team working on a cleaning job.</p>
               </div>
             </article>
 
             <article class="result-card">
               <div class="result-image-wrapper">
                 <span class="result-tag">Project clip 2</span>
-                <video
-                  src="assets/vid/sonsek vid3.mp4"
-                  controls
-                  muted
-                  playsinline
-                ></video>
+                <video src="assets/vid/sonsek vid3.mp4" controls muted playsinline></video>
               </div>
               <div class="result-body">
                 <h3 class="result-title">On-site cleaning highlight</h3>
-                <p class="result-meta">
-                    Short clip from a real Sonsek Cleaning &amp; Fumigation
-                    project in Abuja.
-                </p>
+                <p class="result-meta">Short clip from a real Sonsek Cleaning &amp; Fumigation project in Abuja.</p>
               </div>
             </article>
 
             <article class="result-card">
               <div class="result-image-wrapper">
                 <span class="result-tag">Project clip 3</span>
-                <video
-                  src="assets/vid/sonsek vid.mp4"
-                  controls
-                  muted
-                  playsinline
-                ></video>
+                <video src="assets/vid/sonsek vid.mp4" controls muted playsinline></video>
               </div>
               <div class="result-body">
                 <h3 class="result-title">Indoor cleaning snapshot</h3>
-                <p class="result-meta">
-                    A short recap of different Sonsek Cleaning &amp; Fumigation
-                  jobs.
-                </p>
+                <p class="result-meta">A short recap of different Sonsek Cleaning &amp; Fumigation jobs.</p>
               </div>
             </article>
 
             <article class="result-card">
               <div class="result-image-wrapper">
                 <span class="result-tag">Project clip 4</span>
-                <video
-                  src="assets/vid/sonsek vid5.mp4"
-                  controls
-                  muted
-                  playsinline
-                ></video>
+                <video src="assets/vid/sonsek vid5.mp4" controls muted playsinline></video>
               </div>
               <div class="result-body">
                 <h3 class="result-title">Cleaning results recap</h3>
-                <p class="result-meta">
-                    A quick view of Sonsek equipment and techniques during
-                    service.
-                </p>
+                <p class="result-meta">A quick view of Sonsek equipment and techniques during service.</p>
               </div>
             </article>
           </div>
         </div>
       </section>
 
-      <!-- Testimonials -->
+      <!-- ── TESTIMONIALS ───────────────────────────────────────────────── -->
       <section class="section" id="reviews">
         <div class="container">
           <div class="section-header">
             <div class="section-eyebrow">Customer Reviews</div>
-            <h2 class="section-title">
-              5.0 rating from Abuja homes &amp; offices
-            </h2>
+            <h2 class="section-title">4.5 star rating from Abuja homes &amp; offices</h2>
             <p class="section-subtitle">
               Clients trust Sonsek Cleaning &amp; Fumigation Services for
-              reliable teams, punctual visits, and visible results after every
-              job.
+              reliable teams, punctual visits, and visible results after every job.
             </p>
           </div>
 
           <div class="reviews-summary">
             <div class="reviews-score">
               <div>
-                <div class="reviews-score-main">5.0</div>
+                <div class="reviews-score-main">4.5</div>
                 <div class="reviews-score-sub">Average rating on 16 reviews</div>
               </div>
               <div class="testimonial-rating">★★★★★</div>
             </div>
             <div class="badge">
               <span class="badge-dot"></span>
-              100% of customers would recommend Sonsek
+              96% of customers would recommend Sonsek
             </div>
           </div>
 
@@ -673,9 +551,9 @@
             <article class="testimonial-card">
               <div class="testimonial-rating">★★★★★</div>
               <p class="testimonial-text">
-                “Very professional and thorough. They cleaned my apartment in
+                "Very professional and thorough. They cleaned my apartment in
                 Nyanya after renovation and removed every trace of cement dust.
-                I highly recommend them.”
+                I highly recommend them."
               </p>
               <div class="testimonial-author">Mrs. Chinwe</div>
               <div class="testimonial-meta">Homeowner – Nyanya, Abuja</div>
@@ -684,9 +562,9 @@
             <article class="testimonial-card">
               <div class="testimonial-rating">★★★★★</div>
               <p class="testimonial-text">
-                “We use Sonsek for our office cleaning and fumigation schedule.
+                "We use Sonsek for our office cleaning and fumigation schedule.
                 They always arrive on time, follow safety procedures, and leave
-                the office fresh.”
+                the office fresh."
               </p>
               <div class="testimonial-author">Mr. Emmanuel</div>
               <div class="testimonial-meta">Office Manager – Abuja</div>
@@ -695,8 +573,8 @@
             <article class="testimonial-card">
               <div class="testimonial-rating">★★★★★</div>
               <p class="testimonial-text">
-                “The team is friendly and trustworthy. I feel comfortable having
-                them in my home and I love that I can book them online anytime.”
+                "The team is friendly and trustworthy. I feel comfortable having
+                them in my home and I love that I can book them online anytime."
               </p>
               <div class="testimonial-author">Grace A.</div>
               <div class="testimonial-meta">Regular house cleaning client</div>
@@ -705,7 +583,7 @@
         </div>
       </section>
 
-      <!-- Contact / location mini section -->
+      <!-- ── CONTACT / LOCATION ─────────────────────────────────────────── -->
       <section class="section">
         <div class="container content-grid">
           <div class="card">
@@ -716,100 +594,51 @@
               facilities across Abuja and Nyanya.
             </p>
 
-            <form
-              data-ajax-form
-              data-endpoint="/api/booking"
-              aria-label="Quick booking form"
-            >
+            <form data-ajax-form data-endpoint="/api/booking" aria-label="Quick booking form">
               <div class="form-row">
                 <div class="form-control">
                   <label class="form-label" for="home-name">Full name*</label>
-                  <input
-                    id="home-name"
-                    class="form-input"
-                    name="name"
-                    required
-                    placeholder="Your full name"
-                  />
+                  <input id="home-name" class="form-input" name="name" required placeholder="Your full name" />
                 </div>
                 <div class="form-control">
                   <label class="form-label" for="home-phone">Phone*</label>
-                  <input
-                    id="home-phone"
-                    class="form-input"
-                    name="phone"
-                    required
-                    placeholder="Your phone number"
-                  />
+                  <input id="home-phone" class="form-input" name="phone" required placeholder="Your phone number" />
                 </div>
               </div>
 
               <div class="form-row">
                 <div class="form-control">
                   <label class="form-label" for="home-email">Email</label>
-                  <input
-                    id="home-email"
-                    class="form-input"
-                    type="email"
-                    name="email"
-                    placeholder="you@example.com"
-                  />
+                  <input id="home-email" class="form-input" type="email" name="email" placeholder="you@example.com" />
                 </div>
                 <div class="form-control">
-                  <label class="form-label" for="home-date"
-                    >Preferred date</label
-                  >
-                  <input
-                    id="home-date"
-                    class="form-input"
-                    type="date"
-                    name="preferredDate"
-                  />
+                  <label class="form-label" for="home-date">Preferred date</label>
+                  <input id="home-date" class="form-input" type="date" name="preferredDate" />
                 </div>
               </div>
 
               <div class="form-control">
-                <label class="form-label" for="home-service"
-                  >Type of service*</label
-                >
-                <select
-                  id="home-service"
-                  class="form-select"
-                  name="serviceType"
-                  required
-                >
+                <label class="form-label" for="home-service">Type of service*</label>
+                <select id="home-service" class="form-select" name="serviceType" required>
                   <option value="">Select a service</option>
                   <option value="House cleaning">House cleaning</option>
                   <option value="Office cleaning">Office cleaning</option>
                   <option value="Fumigation">Fumigation</option>
                   <option value="Pest control">Pest control</option>
                   <option value="Deep cleaning">Deep cleaning</option>
-                  <option value="Post-construction cleaning">
-                    Post-construction cleaning
-                  </option>
+                  <option value="Post-construction cleaning">Post-construction cleaning</option>
                 </select>
               </div>
 
               <div class="form-control">
-                <label class="form-label" for="home-message"
-                  >Address &amp; details*</label
-                >
-                <textarea
-                  id="home-message"
-                  class="form-textarea"
-                  name="address"
-                  required
-                  placeholder="Full address in Abuja (e.g. Nyanya, estate name) and any notes."
-                ></textarea>
+                <label class="form-label" for="home-message">Address &amp; details*</label>
+                <textarea id="home-message" class="form-textarea" name="address" required
+                          placeholder="Full address in Abuja (e.g. Nyanya, estate name) and any notes."></textarea>
               </div>
 
               <div class="form-footer">
-                <button type="submit" class="btn btn-primary btn-sm">
-                  Submit booking request
-                </button>
-                <div class="form-status" data-form-status>
-                  Secure &amp; private. We never share your details.
-                </div>
+                <button type="submit" class="btn btn-primary btn-sm">Submit booking request</button>
+                <div class="form-status" data-form-status>Secure &amp; private. We never share your details.</div>
               </div>
             </form>
           </div>
@@ -817,28 +646,19 @@
           <aside class="card">
             <h2 class="card-title">Visit or contact Sonsek Cleaning</h2>
             <p class="card-subtitle">
-              We’re based in Nyanya, Abuja and serve homes and businesses across
+              We're based in Nyanya, Abuja and serve homes and businesses across
               Abuja and the FCT.
             </p>
 
             <ul class="info-list">
               <li>
                 <span class="info-label">Address</span>
-                <span>
-                  Dunamis/Mummy Road Suite 30, Bello Plaza by Check-point, Along
-                  Dunamis/Mummy Road, Nyanya, Abuja, Federal Capital Territory,
-                  Nigeria
-                </span>
-              </li>
-              <li>
-                <span class="info-label">Plus Code</span>
-                <span>2HHH+GX Ado</span>
+                <span>Dunamis/Mummy Road Suite 30, Bello Plaza by Check-point, Along
+                  Dunamis/Mummy Road, Nyanya, Abuja, Federal Capital Territory, Nigeria</span>
               </li>
               <li>
                 <span class="info-label">Phone</span>
-                <span>
-                  <a href="tel:09024524116">0902 452 4116</a>
-                </span>
+                <span><a href="tel:09024524116">0902 452 4116</a></span>
               </li>
               <li>
                 <span class="info-label">Hours</span>
@@ -846,73 +666,103 @@
               </li>
             </ul>
 
+            <!-- ── SOCIAL ROW — Facebook · Instagram · WhatsApp (no Twitter) -->
             <div class="social-row">
               <span>Connect:</span>
-              <a
-                href="#"
-                target="_blank"
-                rel="noopener"
-                class="social-icon"
-                aria-label="Facebook (add link)"
-              >
-                f
+
+              <!-- Facebook -->
+              <a href="https://www.facebook.com/" target="_blank" rel="noopener"
+                 class="social-icon social-icon--facebook" aria-label="Sonsek on Facebook">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991
+                    3.657 9.128 8.438 9.878v-6.987H7.898V12h2.54V9.797c0-2.506
+                    1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26
+                    c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988
+                    C18.343 21.128 22 16.991 22 12z"/>
+                </svg>
               </a>
-              <a
-                href="#"
-                target="_blank"
-                rel="noopener"
-                class="social-icon"
-                aria-label="Instagram (add link)"
-              >
-                ig
+
+              <!-- Instagram -->
+              <a href="https://www.instagram.com/" target="_blank" rel="noopener"
+                 class="social-icon social-icon--instagram" aria-label="Sonsek on Instagram">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771
+                    1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012
+                    3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058
+                    -1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149
+                    -4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0
+                    -3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919
+                    1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014
+                    -4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073
+                    1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618
+                    6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668
+                    -.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28
+                    .073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196
+                    -4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949
+                    -.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000
+                    -12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44
+                    1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                </svg>
               </a>
-              <a
-                href="#"
-                target="_blank"
-                rel="noopener"
-                class="social-icon"
-                aria-label="TikTok (add link)"
-              >
-                tt
-              </a>
-              <a
-                href="https://wa.me/2349024524116"
-                target="_blank"
-                rel="noopener"
-                class="social-icon"
-                aria-label="WhatsApp"
-              >
-                wa
+
+              <!-- WhatsApp -->
+              <a href="https://wa.me/2349024524116" target="_blank" rel="noopener"
+                 class="social-icon social-icon--whatsapp" aria-label="Chat with Sonsek on WhatsApp">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273
+                    -.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199
+                    -.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788
+                    -1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133
+                    .298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371
+                    -.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5
+                    -.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372
+                    -.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213
+                    3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694
+                    .625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006
+                    -1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57
+                    -.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361
+                    -.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26
+                    c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988
+                    2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884
+                    -9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0
+                    .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24
+                    l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0
+                    11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                </svg>
               </a>
             </div>
 
             <div class="map-embed" style="margin-top: 1rem">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126746.49089647838!2d7.442!3d9.01!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104e0a6c7b8b2f75%3A0x0000000000000000!2sNyanya%2C%20Abuja!5e0!3m2!1sen!2sng!4v1700000000000"
-                width="400"
-                height="250"
-                style="border: 0"
-                allowfullscreen=""
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-              ></iframe>
+                width="400" height="250" style="border:0" allowfullscreen=""
+                loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
             </div>
           </aside>
         </div>
       </section>
+
     </main>
 
+    <!-- ── FOOTER ─────────────────────────────────────────────────────────── -->
     <footer class="site-footer">
       <div class="container">
         <div class="footer-grid">
           <div>
+            <!--
+              ── FOOTER LOGO — same image as nav logo (assets/img/image.png)
+                 The old .footer-logo-badge "S" placeholder is replaced.
+            -->
             <div class="footer-logo">
-              <div class="footer-logo-badge">S</div>
-              <div>
-                <div>Sonsek Cleaning &amp; Fumigation Services</div>
-                <div class="footer-meta">
-                  Professional cleaning &amp; fumigation services in Abuja, FCT.
-                </div>
+              <img
+                class="footer-logo-img"
+                src="assets/img/image.png"
+                alt="Sonsek Cleaning &amp; Fumigation Services logo"
+              />
+              <div class="footer-logo-text-wrap">
+                <span class="footer-logo-name">Sonsek Cleaning &amp; Fumigation Services</span>
+                <span class="footer-logo-sub">Professional cleaning &amp; fumigation services in Abuja, FCT.</span>
               </div>
             </div>
             <p class="footer-meta">
@@ -936,49 +786,47 @@
           <div>
             <div class="footer-heading">Contact</div>
             <ul class="footer-contact">
-              <li>
-                Phone:
-                <a href="tel:09024524116">0902 452 4116</a>
-              </li>
-              <li>Email: info@sonsekcleaning.com</li>
-              <li>Support: support@sonsekcleaning.com</li>
+              <li>Phone: <a href="tel:09024524116">0902 452 4116</a></li>
+              <li>Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="87eee9e1e8c7f4e8e9f4e2ece4ebe2e6e9eee9e0a9e4e8ea">[email&#160;protected]</a></li>
+              <li>Support: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="92e1e7e2e2fde0e6d2e1fdfce1f7f9f1fef7f3fcfbfcf5bcf1fdff">[email&#160;protected]</a></li>
               <li>Location: Nyanya, Abuja, FCT</li>
             </ul>
           </div>
         </div>
 
         <div class="footer-bottom">
-          <div>
-            &copy; <span id="year"></span> Sonsek Cleaning &amp; Fumigation
-            Services. All rights reserved.
-          </div>
+          <div>&copy; <span id="year"></span> Sonsek Cleaning &amp; Fumigation Services. All rights reserved.</div>
           <div class="footer-policies">
-            <span>Secure HTTPS • SSL enabled (via hosting)</span>
+            <span>Secure HTTPS &bull; SSL enabled</span>
           </div>
         </div>
       </div>
     </footer>
 
-    <!-- Floating WhatsApp button -->
+    <!-- ── FLOATING WHATSAPP BUTTON ─────────────────────────────────────── -->
     <div class="whatsapp-float">
-      <button
+      <a
+        href="https://wa.me/2349024524116?text=Hello%20Sonsek%2C%20I%27d%20like%20to%20book%20a%20cleaning%20service."
+        target="_blank"
+        rel="noopener"
         class="whatsapp-button"
-        data-whatsapp-button
-        data-phone="2349024524116"
+        aria-label="Chat with Sonsek Cleaning on WhatsApp"
       >
-        <span>💬</span>
-        <span>Chat on WhatsApp</span>
-      </button>
+        <span class="whatsapp-button__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+        </span>
+        <span class="whatsapp-button__text">Chat on WhatsApp</span>
+      </a>
     </div>
 
-    <!-- Tawk.to or live chat widget: replace with your property ID -->
+    <!-- Tawk.to live chat (uncomment and replace YOUR_TAWKTO_PROPERTY_ID) -->
     <!--
     <script type="text/javascript">
-      var Tawk_API = Tawk_API || {},
-        Tawk_LoadStart = new Date();
+      var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
       (function () {
-        var s1 = document.createElement("script"),
-          s0 = document.getElementsByTagName("script")[0];
+        var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
         s1.async = true;
         s1.src = "https://embed.tawk.to/YOUR_TAWKTO_PROPERTY_ID/DEFAULT";
         s1.charset = "UTF-8";
@@ -991,9 +839,7 @@
     <script src="https://js.paystack.co/v1/inline.js"></script>
     <script src="assets/js/main.js"></script>
     <script>
-      document.getElementById("year").textContent =
-        new Date().getFullYear().toString();
+      document.getElementById("year").textContent = new Date().getFullYear().toString();
     </script>
   </body>
 </html>
-
