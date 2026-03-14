@@ -10,18 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="assets/css/styles.css"/>
-<style>
-:root{
-  --forest:#071c0e;--pine:#0d3d1c;--green:#1a6b3c;--leaf:#22944f;--mint:#5edc8a;
-  --gold:#c9a84c;--gold-lt:#e8c96a;--cream:#ffffff;--white:#ffffff;--ink:#0c1810;
-  --grey:#6b7280;--border:#e8ede9;
-  --serif:'Cormorant Garamond',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif;
-  --ease:cubic-bezier(.4,0,.2,1);--ease-bounce:cubic-bezier(.34,1.56,.64,1);
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:var(--sans);background:#fff;color:var(--ink);overflow-x:hidden}
-img{display:block;max-width:100%}
-button{font-family:var(--sans)}
+    <style>
       #mobileNav { display: none !important; }
       #mobileNav.nav-open { display: flex !important; flex-direction: column; gap: 0; padding: 0.5rem 0 0.75rem; background: #fff; border-top: 2px solid #e5e7eb; box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
       #mobileNav a { display: block; padding: 0.75rem 1.5rem; font-size: 1rem; font-weight: 600; color: #1a1a1a; text-decoration: none; border-bottom: 1px solid #f0f0f0; transition: background 0.15s; }
@@ -49,7 +38,12 @@ button{font-family:var(--sans)}
         .nav-title-sub { display: none !important; }
         .footer-logo-img { height: 32px !important; }
         .footer-logo-name { font-size: 0.82rem !important; }
+        .hero-card { display: none !important; }
       }
+      .info-list li { align-items: center; }
+      .info-list .social-row { display: inline-flex; align-items: center; }
+    </style>
+    <style>
 .hero{position:relative;height:96vh;min-height:560px;max-height:900px;overflow:hidden;background:var(--forest);}
 .hero-track{display:flex;height:100%;transition:transform 1s var(--ease);will-change:transform;}
 .hero-slide{flex:0 0 100%;height:100%;position:relative;overflow:hidden;}
@@ -177,6 +171,7 @@ button{font-family:var(--sans)}
 </head>
 <body class="page">
 
+<!-- ========== HEADER (from index.html) ========== -->
 <header class="site-header">
   <div class="container">
     <nav class="nav">
@@ -212,6 +207,7 @@ button{font-family:var(--sans)}
     </div>
   </div>
 </header>
+<!-- ========== END HEADER ========== -->
 
 <main>
 
@@ -232,7 +228,7 @@ button{font-family:var(--sans)}
       <div class="hero-veil"></div>
       <div class="hero-body container">
         <div class="hero-chip">Fumigation</div>
-        <h1 class="hero-h1">Precision Pest Control<br><em>Nationwide</em></h1>
+        <h1 class="hero-h1">Precision Post Construction<br><em>Polishing</em></h1>
         <p class="hero-sub">Certified teams, industrial-grade equipment and approved chemicals — protecting your home and business.</p>
         <span class="hero-pill">Fumigation &amp; Pest Control</span>
       </div>
@@ -251,8 +247,8 @@ button{font-family:var(--sans)}
       <img src="assets/img/gallery/son6.jpeg" alt="Polished marble floor" loading="lazy"/>
       <div class="hero-veil"></div>
       <div class="hero-body container">
-        <div class="hero-chip">Floor Care</div>
-        <h1 class="hero-h1">Floors Polished<br>to a <em>Mirror Finish</em></h1>
+        <div class="hero-chip">Door Care</div>
+        <h1 class="hero-h1">Door Polished<br>to a <em>Mirror Finish</em></h1>
         <p class="hero-sub">Industrial machines and specialist products for every floor type — marble, tile, carpet and more.</p>
         <span class="hero-pill">Floor Care &amp; Carpet</span>
       </div>
@@ -262,7 +258,7 @@ button{font-family:var(--sans)}
       <div class="hero-veil"></div>
       <div class="hero-body container">
         <div class="hero-chip">Outdoor &amp; Paving</div>
-        <h1 class="hero-h1">Driveways &amp; Compounds<br><em>Transformed</em></h1>
+        <h1 class="hero-h1">Bedroom Rug <br><em>Transformed</em></h1>
         <p class="hero-sub">Stunning before-and-after outdoor transformations — paving, compounds and terraces restored to perfection.</p>
         <span class="hero-pill">Outdoor &amp; Paving</span>
       </div>
@@ -617,16 +613,15 @@ button{font-family:var(--sans)}
   </div>
 </footer>
 
-<!-- ✅ CORRECTED WhatsApp float — exact official icon -->
 <div style="position:fixed;bottom:24px;right:24px;z-index:9999;">
-      <a href="https://wa.me/2349024524116?text=Hello%20Sonsek%2C%20I%27d%20like%20to%20book%20a%20cleaning%20service."
-         target="_blank" rel="noopener" aria-label="Chat on WhatsApp"
-         style="display:flex;align-items:center;justify-content:center;width:60px;height:60px;border-radius:50%;background:#25D366;text-decoration:none;box-shadow:0 4px 16px rgba(37,211,102,0.5);">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32">
-          <path fill="#ffffff" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 15 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67M8.53 7.33C8.37 7.33 8.1 7.39 7.87 7.64C7.65 7.89 7 8.5 7 9.71C7 10.93 7.89 12.1 8 12.27C8.14 12.44 9.76 14.94 12.25 16C12.84 16.27 13.3 16.42 13.66 16.53C14.25 16.72 14.79 16.69 15.22 16.63C15.7 16.56 16.68 16.03 16.89 15.45C17.1 14.87 17.1 14.38 17.04 14.27C16.97 14.17 16.81 14.11 16.56 14C16.31 13.86 15.09 13.26 14.87 13.18C14.64 13.1 14.5 13.06 14.31 13.3C14.15 13.55 13.67 14.11 13.53 14.27C13.38 14.44 13.24 14.46 13 14.34C12.74 14.21 11.94 13.88 11 13.05C10.26 12.38 9.77 11.56 9.62 11.31C9.47 11.07 9.6 10.93 9.72 10.81C9.83 10.7 9.97 10.52 10.08 10.38C10.2 10.24 10.24 10.14 10.32 9.97C10.4 9.81 10.36 9.67 10.3 9.55C10.24 9.44 9.77 8.2 9.57 7.73C9.37 7.26 9.17 7.33 9 7.32H8.53Z"/>
-        </svg>
-      </a>
-    </div>
+  <a href="https://wa.me/2349024524116?text=Hello%20Sonsek%2C%20I%27d%20like%20to%20book%20a%20cleaning%20service."
+     target="_blank" rel="noopener" aria-label="Chat on WhatsApp"
+     style="display:flex;align-items:center;justify-content:center;width:60px;height:60px;border-radius:50%;background:#25D366;text-decoration:none;box-shadow:0 4px 16px rgba(37,211,102,0.5);">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32">
+      <path fill="#ffffff" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 15 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67M8.53 7.33C8.37 7.33 8.1 7.39 7.87 7.64C7.65 7.89 7 8.5 7 9.71C7 10.93 7.89 12.1 8 12.27C8.14 12.44 9.76 14.94 12.25 16C12.84 16.27 13.3 16.42 13.66 16.53C14.25 16.72 14.79 16.69 15.22 16.63C15.7 16.56 16.68 16.03 16.89 15.45C17.1 14.87 17.1 14.38 17.04 14.27C16.97 14.17 16.81 14.11 16.56 14C16.31 13.86 15.09 13.26 14.87 13.18C14.64 13.1 14.5 13.06 14.31 13.3C14.15 13.55 13.67 14.11 13.53 14.27C13.38 14.44 13.24 14.46 13 14.34C12.74 14.21 11.94 13.88 11 13.05C10.26 12.38 9.77 11.56 9.62 11.31C9.47 11.07 9.6 10.93 9.72 10.81C9.83 10.7 9.97 10.52 10.08 10.38C10.2 10.24 10.24 10.14 10.32 9.97C10.4 9.81 10.36 9.67 10.3 9.55C10.24 9.44 9.77 8.2 9.57 7.73C9.37 7.26 9.17 7.33 9 7.32H8.53Z"/>
+    </svg>
+  </a>
+</div>
 
 <script src="assets/js/main.js"></script>
 <script>
