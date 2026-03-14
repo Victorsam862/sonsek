@@ -27,7 +27,7 @@ button{font-family:var(--sans)}
 #mobileNav a{display:block;padding:.85rem 1.5rem;font-weight:600;color:#1a1a1a;text-decoration:none;border-bottom:1px solid #f0f0f0;transition:background .15s;}
 #mobileNav a:last-child{border-bottom:none}
 #mobileNav a:hover{background:#f0fdf4;color:#1a7a42}
-#mobileNav a.btn{display:block;margin:.75rem 1.5rem .5rem;border-radius:8px;text-align:center;padding:.7rem 1rem;box-sizing:border-box;width:calc(100% - 3rem);}
+#mobileNav a.btn{display:block;margin:.75rem 1.5rem .25rem;border-radius:8px;text-align:center;padding:.65rem 1rem;box-sizing:border-box;width:calc(100% - 3rem);overflow:hidden;}
 .nav-toggle{display:none;cursor:pointer;background:none;border:none}
 @media(max-width:900px){
   .nav-toggle{display:flex;flex-direction:column;justify-content:center;align-items:center;width:40px;height:40px;padding:4px}
@@ -152,6 +152,13 @@ button{font-family:var(--sans)}
 .vs-dot{width:6px;height:6px;border-radius:50%;background:var(--border);border:none;cursor:pointer;padding:0;transition:all .25s}
 .vs-dot.on{background:var(--gold);width:18px;border-radius:3px}
 @media(max-width:768px){.footer-col-links{display:none!important}}
+@media(max-width:900px){
+  .nav-logo{width:54px!important;height:54px!important;}
+  .nav-title-main{font-size:0.82rem!important;}
+  .nav-title-sub{display:none!important;}
+  .footer-logo-img{height:32px!important;}
+  .footer-logo-name{font-size:0.82rem!important;}
+}
 </style>
 <script>
 (function(){
@@ -173,7 +180,7 @@ button{font-family:var(--sans)}
   <div class="container">
     <nav class="nav">
       <a href="index.html" class="nav-brand">
-        <img class="nav-logo" src="assets/img/image.png" alt="Sonsek logo" style="width:70px;height:70px;border-radius:14px;object-fit:contain;"/>
+        <img class="nav-logo" src="assets/img/image.png" alt="Sonsek logo" style="width:64px;height:64px;border-radius:12px;object-fit:contain;"/>
         <div class="nav-title">
           <span style="font-size:1.05rem;font-weight:800;letter-spacing:.01em;line-height:1.2;display:block;"><strong>Sonsek Integrated Services LTD</strong></span>
           <em style="font-size:.67rem;color:#1a6b3c;display:block;font-style:italic;">Cleaning With Care, Fumigation With Precision</em>
@@ -559,7 +566,7 @@ button{font-family:var(--sans)}
     <div class="footer-grid">
       <div>
         <div class="footer-logo">
-          <img class="footer-logo-img" src="assets/img/image.png" alt="Sonsek logo" style="height:56px;width:auto;"/>
+          <img class="footer-logo-img" src="assets/img/image.png" alt="Sonsek logo" style="height:38px;width:auto;"/>
           <div class="footer-logo-text-wrap">
             <span style="font-size:1rem;font-weight:800;display:block;"><strong>Sonsek Integrated Services LTD</strong></span>
             <em style="display:block;color:rgba(255,255,255,0.7);font-size:.72rem;margin-top:2px;">Cleaning With Care, Fumigation With Precision</em>
