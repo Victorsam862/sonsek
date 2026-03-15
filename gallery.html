@@ -10,193 +10,280 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="assets/css/styles.css"/>
-    <style>
-      #mobileNav { display: none !important; }
-      #mobileNav.nav-open { display: flex !important; flex-direction: column; gap: 0; padding: 0.5rem 0 0.75rem; background: #fff; border-top: 2px solid #e5e7eb; box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
-      #mobileNav a { display: block; padding: 0.75rem 1.5rem; font-size: 1rem; font-weight: 600; color: #1a1a1a; text-decoration: none; border-bottom: 1px solid #f0f0f0; transition: background 0.15s; }
-      #mobileNav a:last-child { border-bottom: none; }
-      #mobileNav a:hover { background: #f0fdf4; color: #1a7a42; }
-      #mobileNav a.btn { display: block; margin: 0.75rem 1.5rem 0.25rem; border-radius: 8px; text-align: center; padding: 0.65rem 1rem; box-sizing: border-box; width: calc(100% - 3rem); overflow: hidden; }
-      .nav-toggle { display: none; cursor: pointer; }
-      @media (max-width: 900px) {
-        .nav-toggle { display: flex; flex-direction: column; justify-content: center; align-items: center; width: 40px; height: 40px; background: none; border: none; padding: 4px; }
-        .nav-toggle span, .nav-toggle span::before, .nav-toggle span::after { display: block; width: 24px; height: 2px; background: currentColor; border-radius: 2px; transition: 0.25s; }
-        .nav-toggle span { position: relative; }
-        .nav-toggle span::before, .nav-toggle span::after { content: ""; position: absolute; left: 0; }
-        .nav-toggle span::before { top: -7px; }
-        .nav-toggle span::after { top: 7px; }
-        .nav-toggle.is-open span { background: transparent; }
-        .nav-toggle.is-open span::before { transform: rotate(45deg); top: 0; }
-        .nav-toggle.is-open span::after { transform: rotate(-45deg); top: 0; }
-        .nav-links { display: none !important; }
-        .nav-cta { display: none !important; }
-      }
-      @media (max-width: 768px) { .footer-col-links { display: none !important; } }
-      @media (max-width: 900px) {
-        .nav-logo { width: 54px !important; height: 54px !important; }
-        .nav-title-main { font-size: 0.82rem !important; }
-        .nav-title-sub { display: none !important; }
-        .footer-logo-img { height: 32px !important; }
-        .footer-logo-name { font-size: 0.82rem !important; }
-        .hero-card { display: none !important; }
-      }
-      .info-list li { align-items: center; }
-      .info-list .social-row { display: inline-flex; align-items: center; }
-    </style>
-    <style>
-.hero{position:relative;height:96vh;min-height:560px;max-height:900px;overflow:hidden;background:var(--forest);}
-.hero-track{display:flex;height:100%;transition:transform 1s var(--ease);will-change:transform;}
-.hero-slide{flex:0 0 100%;height:100%;position:relative;overflow:hidden;}
-.hero-slide img{width:100%;height:100%;object-fit:cover;transition:transform 9s linear;transform:scale(1);}
+<style>
+:root{
+  --forest:#071c0e;--pine:#0d3d1c;--green:#1a6b3c;--gold:#c9a84c;--gold-lt:#e8c96a;
+  --white:#ffffff;--ink:#0c1810;--grey:#6b7280;--border:#e8ede9;
+  --serif:'Cormorant Garamond',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif;
+  --ease:cubic-bezier(.4,0,.2,1);--ease-bounce:cubic-bezier(.34,1.56,.64,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--sans);background:#fff;color:var(--ink);overflow-x:hidden}
+img{display:block;max-width:100%}
+button{font-family:var(--sans)}
+
+/* ── MOBILE NAV ─────────────────────────────── */
+#mobileNav{display:none!important}
+#mobileNav.nav-open{display:flex!important;flex-direction:column;background:#fff;border-top:2px solid #e5e7eb;box-shadow:0 8px 24px rgba(0,0,0,.12)}
+#mobileNav a{display:block;padding:.85rem 1.5rem;font-weight:600;color:#1a1a1a;text-decoration:none;border-bottom:1px solid #f0f0f0;transition:background .15s}
+#mobileNav a:last-child{border-bottom:none}
+#mobileNav a:hover{background:#f0fdf4;color:#1a7a42}
+#mobileNav a.btn{display:block;margin:.75rem 1.5rem .5rem;border-radius:8px;text-align:center;padding:.7rem 1rem;box-sizing:border-box;width:calc(100% - 3rem)}
+/* Close button row inside dropdown */
+.mob-nav-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.65rem 1rem .65rem 1.5rem;
+  background:#f9fafb;border-bottom:1px solid #e5e7eb;
+}
+.mob-nav-header span{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#9ca3af}
+.mob-nav-close-btn{
+  background:none;border:1.5px solid #d1d5db;border-radius:50%;
+  width:30px;height:30px;cursor:pointer;font-size:.95rem;font-weight:800;
+  color:#6b7280;display:flex;align-items:center;justify-content:center;
+  transition:all .18s;line-height:1;padding:0;
+}
+.mob-nav-close-btn:hover{background:#fee2e2;border-color:#ef4444;color:#ef4444}
+
+/* ── HAMBURGER ──────────────────────────────── */
+.nav-toggle{display:none;cursor:pointer;background:none;border:none;padding:4px}
+@media(max-width:900px){
+  .nav-toggle{display:flex;flex-direction:column;justify-content:center;align-items:center;width:40px;height:40px}
+  .nav-toggle span,.nav-toggle span::before,.nav-toggle span::after{display:block;width:24px;height:2.5px;background:currentColor;border-radius:2px;transition:.25s}
+  .nav-toggle span{position:relative}
+  .nav-toggle span::before,.nav-toggle span::after{content:"";position:absolute;left:0}
+  .nav-toggle span::before{top:-7px}
+  .nav-toggle span::after{top:7px}
+  .nav-toggle.is-open span{background:transparent}
+  .nav-toggle.is-open span::before{transform:rotate(45deg);top:0}
+  .nav-toggle.is-open span::after{transform:rotate(-45deg);top:0}
+  .nav-links,.nav-cta{display:none!important}
+  .nav-logo{width:54px!important;height:54px!important}
+  .nav-title-sub{display:none!important}
+}
+@media(max-width:768px){.footer-col-links{display:none!important}}
+
+/* ── HERO ──────────────────────────────────── */
+.hero{position:relative;height:96vh;min-height:560px;max-height:900px;overflow:hidden;background:var(--forest)}
+.hero-track{display:flex;height:100%;transition:transform 1s var(--ease);will-change:transform}
+.hero-slide{flex:0 0 100%;height:100%;position:relative;overflow:hidden}
+.hero-slide img{width:100%;height:100%;object-fit:cover;transition:transform 9s linear;transform:scale(1)}
 .hero-slide.is-active img{transform:scale(1.07)}
-.hero-veil{position:absolute;inset:0;background:linear-gradient(to top,rgba(7,28,14,.92) 0%,rgba(7,28,14,.55) 45%,rgba(7,28,14,.18) 100%);}
-.hero-body{position:absolute;bottom:0;left:0;right:0;padding:3rem 2.5rem 5rem;max-width:1240px;margin:0 auto;}
-.hero-chip{display:inline-flex;align-items:center;gap:.6rem;font-size:.62rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:1rem;}
+.hero-veil{position:absolute;inset:0;background:linear-gradient(to top,rgba(7,28,14,.92) 0%,rgba(7,28,14,.55) 45%,rgba(7,28,14,.18) 100%)}
+.hero-body{position:absolute;bottom:0;left:0;right:0;padding:3rem 2.5rem 5.5rem;max-width:1240px;margin:0 auto}
+.hero-chip{display:inline-flex;align-items:center;gap:.6rem;font-size:.62rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:1rem}
 .hero-chip::before{content:'';width:32px;height:1px;background:var(--gold)}
-.hero-h1{font-family:var(--serif);font-size:clamp(2.6rem,6.5vw,5rem);font-weight:700;color:var(--white);line-height:1.04;letter-spacing:-.015em;margin-bottom:.9rem;}
+.hero-h1{font-family:var(--serif);font-size:clamp(2.6rem,6.5vw,5rem);font-weight:700;color:var(--white);line-height:1.04;letter-spacing:-.015em;margin-bottom:.9rem}
 .hero-h1 em{font-style:italic;color:var(--gold-lt)}
-.hero-sub{font-size:1rem;color:rgba(255,255,255,.72);max-width:500px;line-height:1.65;margin-bottom:1.8rem;}
-.hero-pill{display:inline-block;background:var(--gold);color:var(--forest);font-size:.64rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.4rem 1.1rem;border-radius:4px;}
-.hero-arrow{position:absolute;top:50%;transform:translateY(-50%);width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(10px);color:var(--white);font-size:1.6rem;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .25s;z-index:20;}
-.hero-arrow:hover{background:var(--gold);border-color:var(--gold);color:var(--forest)}
-.hero-arrow.prev{left:2rem}
-.hero-arrow.next{right:2rem}
-@media(max-width:600px){.hero-arrow.prev{left:.75rem}.hero-arrow.next{right:.75rem}.hero-arrow{width:40px;height:40px;font-size:1.2rem}}
-.hero-dots{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;gap:.55rem;align-items:center;z-index:20;}
-.h-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.3);border:none;cursor:pointer;padding:0;transition:all .35s var(--ease);}
-.h-dot.on{background:var(--gold-lt);width:26px;border-radius:4px}
-.statsbar{background:linear-gradient(135deg,#f0fdf4 0%,#dcfce7 100%);display:flex;justify-content:center;flex-wrap:wrap;border-bottom:1px solid rgba(34,122,66,.2);}
-.stat-item{padding:1.5rem 3rem;text-align:center;border-right:1px solid rgba(34,122,66,.15);}
+.hero-sub{font-size:1rem;color:rgba(255,255,255,.72);max-width:500px;line-height:1.65;margin-bottom:1.8rem}
+.hero-pill{display:inline-block;background:var(--gold);color:var(--forest);font-size:.64rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.4rem 1.1rem;border-radius:4px}
+
+/* ── HERO ARROWS — bold, high-contrast ────── */
+.hero-arrow{
+  position:absolute;top:50%;transform:translateY(-50%);
+  width:54px;height:54px;border-radius:50%;
+  background:rgba(0,0,0,.6);
+  border:2.5px solid rgba(255,255,255,.8);
+  color:#fff;font-size:2rem;font-weight:300;line-height:1;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;z-index:20;
+  backdrop-filter:blur(6px);
+  box-shadow:0 4px 20px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.15);
+  transition:all .22s;
+  user-select:none;
+}
+.hero-arrow:hover{
+  background:var(--gold);
+  border-color:var(--gold-lt);
+  color:var(--forest);
+  transform:translateY(-50%) scale(1.1);
+  box-shadow:0 6px 28px rgba(201,168,76,.55);
+}
+.hero-arrow.prev{left:1.5rem}
+.hero-arrow.next{right:1.5rem}
+@media(max-width:600px){
+  .hero-arrow.prev{left:.6rem}
+  .hero-arrow.next{right:.6rem}
+  .hero-arrow{width:46px;height:46px;font-size:1.7rem}
+}
+
+/* ── HERO DOTS — numbered + faded ─────────── */
+.hero-dots{
+  position:absolute;bottom:1.75rem;left:50%;transform:translateX(-50%);
+  display:flex;gap:.55rem;align-items:center;z-index:20;
+}
+.h-dot{
+  width:30px;height:30px;border-radius:50%;
+  background:rgba(0,0,0,.4);
+  border:1.5px solid rgba(255,255,255,.2);
+  color:rgba(255,255,255,.3);
+  font-family:var(--sans);font-size:.68rem;font-weight:700;letter-spacing:0;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;padding:0;
+  transition:all .32s var(--ease);
+  backdrop-filter:blur(6px);
+  box-shadow:0 2px 8px rgba(0,0,0,.3);
+}
+.h-dot.on{
+  background:var(--gold);
+  border-color:var(--gold-lt);
+  color:var(--forest);
+  transform:scale(1.2);
+  box-shadow:0 3px 14px rgba(201,168,76,.55);
+}
+.h-dot:hover:not(.on){
+  background:rgba(255,255,255,.18);
+  border-color:rgba(255,255,255,.55);
+  color:rgba(255,255,255,.85);
+  transform:scale(1.08);
+}
+
+/* ── STATS BAR ─────────────────────────────── */
+.statsbar{background:linear-gradient(135deg,#f0fdf4 0%,#dcfce7 100%);display:flex;justify-content:center;flex-wrap:wrap;border-bottom:1px solid rgba(34,122,66,.2)}
+.stat-item{padding:1.5rem 3rem;text-align:center;border-right:1px solid rgba(34,122,66,.15)}
 .stat-item:last-child{border-right:none}
-.stat-item strong{display:block;font-family:var(--serif);font-size:2rem;font-weight:700;color:#0d3d1c;line-height:1;}
-.stat-item span{display:block;margin-top:.3rem;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:#4b7a5a;}
+.stat-item strong{display:block;font-family:var(--serif);font-size:2rem;font-weight:700;color:#0d3d1c;line-height:1}
+.stat-item span{display:block;margin-top:.3rem;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:#4b7a5a}
 @media(max-width:640px){.stat-item{padding:1.1rem 1.5rem;border-right:none;border-bottom:1px solid rgba(34,122,66,.12);flex:0 0 50%}.stat-item:last-child,.stat-item:nth-child(4){border-bottom:none}}
+
+/* ── CATEGORY SECTIONS ─────────────────────── */
 .cat-section{padding:5.5rem 0;background:#fff}
 .cat-section.alt{background:#f8f8f8}
 .container{max-width:1240px;margin:0 auto;padding:0 1.75rem}
-.cat-head{display:flex;align-items:flex-end;justify-content:space-between;gap:1.5rem;margin-bottom:2.8rem;flex-wrap:wrap;}
-.cat-num{display:inline-flex;align-items:center;gap:.7rem;font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--green);margin-bottom:.6rem;}
-.cat-num::before{content:'';width:36px;height:1px;background:linear-gradient(90deg,var(--green),transparent);}
-.cat-title{font-family:var(--serif);font-size:clamp(1.9rem,3.5vw,2.8rem);font-weight:700;color:var(--pine);line-height:1.1;}
-.cat-desc{margin-top:.55rem;color:var(--grey);font-size:.92rem;line-height:1.65;max-width:520px;}
-.cat-count{font-family:var(--serif);font-size:3.5rem;font-weight:600;color:var(--border);line-height:1;white-space:nowrap;align-self:flex-start;margin-top:.25rem;}
+.cat-head{display:flex;align-items:flex-end;justify-content:space-between;gap:1.5rem;margin-bottom:2.8rem;flex-wrap:wrap}
+.cat-num{display:inline-flex;align-items:center;gap:.7rem;font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--green);margin-bottom:.6rem}
+.cat-num::before{content:'';width:36px;height:1px;background:linear-gradient(90deg,var(--green),transparent)}
+.cat-title{font-family:var(--serif);font-size:clamp(1.9rem,3.5vw,2.8rem);font-weight:700;color:var(--pine);line-height:1.1}
+.cat-desc{margin-top:.55rem;color:var(--grey);font-size:.92rem;line-height:1.65;max-width:520px}
+.cat-count{font-family:var(--serif);font-size:3.5rem;font-weight:600;color:var(--border);line-height:1;white-space:nowrap;align-self:flex-start;margin-top:.25rem}
+
+/* ── PHOTO SLIDER ──────────────────────────── */
 .pslider-wrap{position:relative}
 .pslider-viewport{overflow:hidden;border-radius:20px}
-.pslider-track{display:flex;gap:1.5rem;transition:transform .65s var(--ease);will-change:transform;}
-.photo-card{flex:0 0 calc(33.333% - 1rem);border-radius:16px;overflow:hidden;background:var(--white);box-shadow:0 2px 20px rgba(0,0,0,.07);cursor:pointer;transition:transform .35s var(--ease-bounce),box-shadow .35s;position:relative;}
+.pslider-track{display:flex;gap:1.5rem;transition:transform .65s var(--ease);will-change:transform}
+.photo-card{flex:0 0 calc(33.333% - 1rem);border-radius:16px;overflow:hidden;background:var(--white);box-shadow:0 2px 20px rgba(0,0,0,.07);cursor:pointer;transition:transform .35s var(--ease-bounce),box-shadow .35s;position:relative}
 @media(max-width:960px){.photo-card{flex:0 0 calc(50% - .75rem)}}
 @media(max-width:580px){.photo-card{flex:0 0 100%}}
-.photo-card:hover{transform:translateY(-8px) scale(1.01);box-shadow:0 24px 48px rgba(0,0,0,.14);}
-.photo-card-img{position:relative;overflow:hidden;aspect-ratio:4/3;}
-.photo-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .55s var(--ease);}
+.photo-card:hover{transform:translateY(-8px) scale(1.01);box-shadow:0 24px 48px rgba(0,0,0,.14)}
+.photo-card-img{position:relative;overflow:hidden;aspect-ratio:4/3}
+.photo-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .55s var(--ease)}
 .photo-card:hover .photo-card-img img{transform:scale(1.07)}
-.photo-card-img::after{content:'⊕';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:2rem;color:var(--white);background:rgba(7,28,14,.35);opacity:0;transition:opacity .3s;}
+.photo-card-img::after{content:'⊕';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:2rem;color:var(--white);background:rgba(7,28,14,.35);opacity:0;transition:opacity .3s}
 .photo-card:hover .photo-card-img::after{opacity:1}
 .photo-card-info{padding:.95rem 1.2rem 1.2rem}
-.photo-card-cat{font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--green);margin-bottom:.3rem;}
-.photo-card-caption{font-family:var(--serif);font-size:1.05rem;font-weight:600;color:var(--pine);line-height:1.3;}
-.photo-card::before{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-lt));transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease);}
+.photo-card-cat{font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--green);margin-bottom:.3rem}
+.photo-card-caption{font-family:var(--serif);font-size:1.05rem;font-weight:600;color:var(--pine);line-height:1.3}
+.photo-card::before{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-lt));transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
 .photo-card:hover::before{transform:scaleX(1)}
-.ps-arrow{position:absolute;top:38%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;background:var(--white);border:1.5px solid var(--border);box-shadow:0 4px 20px rgba(0,0,0,.12);color:var(--pine);font-size:1.15rem;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .22s;z-index:10;}
+.ps-arrow{position:absolute;top:38%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;background:var(--white);border:1.5px solid var(--border);box-shadow:0 4px 20px rgba(0,0,0,.12);color:var(--pine);font-size:1.15rem;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .22s;z-index:10}
 .ps-arrow:hover{background:var(--pine);color:var(--white);border-color:var(--pine)}
-.ps-arrow.ps-prev{left:-23px}
-.ps-arrow.ps-next{right:-23px}
+.ps-arrow.ps-prev{left:-23px}.ps-arrow.ps-next{right:-23px}
 @media(max-width:680px){.ps-arrow.ps-prev{left:4px}.ps-arrow.ps-next{right:4px}}
-.ps-dots{display:flex;gap:.45rem;justify-content:center;margin-top:1.6rem;}
-.ps-dot{width:6px;height:6px;border-radius:50%;background:var(--border);border:none;cursor:pointer;padding:0;transition:all .25s;}
+.ps-dots{display:flex;gap:.45rem;justify-content:center;margin-top:1.6rem}
+.ps-dot{width:6px;height:6px;border-radius:50%;background:var(--border);border:none;cursor:pointer;padding:0;transition:all .25s}
 .ps-dot.on{background:var(--green);width:18px;border-radius:3px}
-.cta-wrap{position:relative;overflow:hidden;background:linear-gradient(135deg,#f0fdf4 0%,#dcfce7 60%,#bbf7d0 100%);padding:6rem 2rem;text-align:center;}
+
+/* ── CTA ──────────────────────────────────── */
+.cta-wrap{position:relative;overflow:hidden;background:linear-gradient(135deg,#f0fdf4 0%,#dcfce7 60%,#bbf7d0 100%);padding:6rem 2rem;text-align:center}
 .cta-inner{position:relative;z-index:1}
-.cta-eyebrow{display:inline-block;font-size:.62rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#1a6b3c;margin-bottom:1.2rem;}
-.cta-h2{font-family:var(--serif);font-size:clamp(2.2rem,5vw,3.6rem);font-weight:700;color:#0d3d1c;line-height:1.08;letter-spacing:-.015em;margin-bottom:1rem;}
-.cta-sub{color:#2d6a4f;font-size:1rem;max-width:460px;margin:0 auto 2.5rem;line-height:1.65;}
+.cta-eyebrow{display:inline-block;font-size:.62rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#1a6b3c;margin-bottom:1.2rem}
+.cta-h2{font-family:var(--serif);font-size:clamp(2.2rem,5vw,3.6rem);font-weight:700;color:#0d3d1c;line-height:1.08;letter-spacing:-.015em;margin-bottom:1rem}
+.cta-sub{color:#2d6a4f;font-size:1rem;max-width:460px;margin:0 auto 2.5rem;line-height:1.65}
 .cta-btns{display:flex;gap:1.1rem;justify-content:center;flex-wrap:wrap}
-.btn-gold{display:inline-block;background:var(--gold);color:var(--forest);padding:.95rem 2.5rem;border-radius:9px;font-weight:700;font-size:.92rem;text-decoration:none;box-shadow:0 4px 24px rgba(201,168,76,.45);transition:all .25s;border:none;cursor:pointer;}
+.btn-gold{display:inline-block;background:var(--gold);color:var(--forest);padding:.95rem 2.5rem;border-radius:9px;font-weight:700;font-size:.92rem;text-decoration:none;box-shadow:0 4px 24px rgba(201,168,76,.45);transition:all .25s;border:none;cursor:pointer}
 .btn-gold:hover{background:var(--gold-lt);transform:translateY(-3px)}
-.btn-ghost{display:inline-block;background:transparent;color:#0d3d1c;padding:.95rem 2.5rem;border-radius:9px;font-weight:600;font-size:.92rem;text-decoration:none;border:1.5px solid rgba(13,61,28,.3);transition:all .25s;}
+.btn-ghost{display:inline-block;background:transparent;color:#0d3d1c;padding:.95rem 2.5rem;border-radius:9px;font-weight:600;font-size:.92rem;text-decoration:none;border:1.5px solid rgba(13,61,28,.3);transition:all .25s}
 .btn-ghost:hover{border-color:#0d3d1c;background:rgba(13,61,28,.06)}
-.lb{display:none;position:fixed;inset:0;background:rgba(5,12,7,.97);z-index:10000;align-items:center;justify-content:center;padding:1.5rem;backdrop-filter:blur(8px);}
+
+/* ── LIGHTBOX ─────────────────────────────── */
+.lb{display:none;position:fixed;inset:0;background:rgba(5,12,7,.97);z-index:10000;align-items:center;justify-content:center;padding:1.5rem;backdrop-filter:blur(8px)}
 .lb.open{display:flex}
-.lb-inner{position:relative;width:100%;max-width:1020px;display:flex;flex-direction:column;align-items:center;}
-.lb-img-box{width:100%;max-height:82vh;display:flex;align-items:center;justify-content:center;}
-.lb-img-box img{max-width:100%;max-height:80vh;border-radius:12px;object-fit:contain;box-shadow:0 40px 100px rgba(0,0,0,.8);}
-.lb-cap{margin-top:1.2rem;text-align:center;font-family:var(--serif);}
-.lb-badge{display:inline-block;background:var(--gold);color:var(--forest);font-family:var(--sans);font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.25rem .8rem;border-radius:3px;margin-bottom:.5rem;}
-.lb-cap strong{display:block;color:var(--white);font-size:1.15rem;font-weight:600;line-height:1.4;}
-.lb-nav{position:absolute;top:42%;transform:translateY(-50%);width:54px;height:54px;border-radius:50%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);color:var(--white);font-size:1.8rem;display:flex;align-items:center;justify-content:center;cursor:pointer;backdrop-filter:blur(6px);transition:all .22s;}
+.lb-inner{position:relative;width:100%;max-width:1020px;display:flex;flex-direction:column;align-items:center}
+.lb-img-box{width:100%;max-height:82vh;display:flex;align-items:center;justify-content:center}
+.lb-img-box img{max-width:100%;max-height:80vh;border-radius:12px;object-fit:contain;box-shadow:0 40px 100px rgba(0,0,0,.8)}
+.lb-cap{margin-top:1.2rem;text-align:center;font-family:var(--serif)}
+.lb-badge{display:inline-block;background:var(--gold);color:var(--forest);font-family:var(--sans);font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.25rem .8rem;border-radius:3px;margin-bottom:.5rem}
+.lb-cap strong{display:block;color:var(--white);font-size:1.15rem;font-weight:600;line-height:1.4}
+.lb-nav{position:absolute;top:42%;transform:translateY(-50%);width:54px;height:54px;border-radius:50%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);color:var(--white);font-size:1.8rem;display:flex;align-items:center;justify-content:center;cursor:pointer;backdrop-filter:blur(6px);transition:all .22s}
 .lb-nav:hover{background:var(--gold);border-color:var(--gold);color:var(--forest)}
 .lb-nav.lb-p{left:-30px}.lb-nav.lb-n{right:-30px}
 @media(max-width:640px){.lb-nav.lb-p{left:4px}.lb-nav.lb-n{right:4px}}
-.lb-close{position:absolute;top:-22px;right:-22px;width:38px;height:38px;border-radius:50%;background:var(--white);border:none;color:var(--ink);font-size:1rem;font-weight:800;cursor:pointer;box-shadow:0 4px 20px rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;transition:transform .2s;}
+.lb-close{position:absolute;top:-22px;right:-22px;width:38px;height:38px;border-radius:50%;background:var(--white);border:none;color:var(--ink);font-size:1rem;font-weight:800;cursor:pointer;box-shadow:0 4px 20px rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;transition:transform .2s}
 .lb-close:hover{transform:scale(1.1)}
-.lb-counter{position:absolute;bottom:-2.5rem;color:rgba(255,255,255,.3);font-size:.72rem;font-family:var(--sans);letter-spacing:.08em;}
+.lb-counter{position:absolute;bottom:-2.5rem;color:rgba(255,255,255,.3);font-size:.72rem;letter-spacing:.08em}
+
+/* ── VIDEO SLIDER ─────────────────────────── */
 .vslider-wrap{position:relative;padding:0 8px}
 .vslider-viewport{overflow:hidden;border-radius:20px}
 .vslider-track{display:flex;gap:1.5rem;transition:transform .65s var(--ease);will-change:transform}
-.vid-card{flex:0 0 calc(33.333% - 1rem);border-radius:16px;overflow:hidden;background:#111;box-shadow:0 4px 28px rgba(0,0,0,.18);position:relative;transition:transform .35s var(--ease-bounce),box-shadow .35s;flex-shrink:0;}
+.vid-card{flex:0 0 calc(33.333% - 1rem);border-radius:16px;overflow:hidden;background:#111;box-shadow:0 4px 28px rgba(0,0,0,.18);position:relative;transition:transform .35s var(--ease-bounce),box-shadow .35s;flex-shrink:0}
 @media(max-width:960px){.vid-card{flex:0 0 calc(50% - .75rem)}}
 @media(max-width:580px){.vid-card{flex:0 0 100%}}
 .vid-card:hover{transform:translateY(-7px);box-shadow:0 22px 48px rgba(0,0,0,.25)}
 .vid-card video{width:100%;aspect-ratio:9/16;object-fit:cover;display:block;pointer-events:none}
-.vid-play-btn{position:absolute;top:0;left:0;right:0;bottom:72px;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.22);transition:background .25s,opacity .25s;z-index:3;cursor:pointer;}
-.vid-play-btn svg{width:64px;height:64px;filter:drop-shadow(0 4px 14px rgba(0,0,0,.6));transition:transform .25s var(--ease-bounce);pointer-events:none;}
+.vid-play-btn{position:absolute;top:0;left:0;right:0;bottom:72px;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.22);transition:opacity .25s;z-index:3;cursor:pointer}
+.vid-play-btn svg{width:64px;height:64px;filter:drop-shadow(0 4px 14px rgba(0,0,0,.6));transition:transform .25s var(--ease-bounce);pointer-events:none}
 .vid-card:hover .vid-play-btn svg{transform:scale(1.14)}
-.vid-card.playing .vid-play-btn{opacity:0;pointer-events:none;}
-.vid-mute-btn{display:none;position:absolute;bottom:78px;right:10px;background:rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.25);color:#fff;border-radius:50%;width:36px;height:36px;font-size:1rem;cursor:pointer;z-index:5;align-items:center;justify-content:center;transition:background .2s;}
+.vid-card.playing .vid-play-btn{opacity:0;pointer-events:none}
+.vid-mute-btn{display:none;position:absolute;bottom:78px;right:10px;background:rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.25);color:#fff;border-radius:50%;width:36px;height:36px;font-size:1rem;cursor:pointer;z-index:5;align-items:center;justify-content:center;transition:background .2s}
 .vid-mute-btn:hover{background:rgba(0,0,0,.8)}
-.vid-card.playing .vid-mute-btn{display:flex;}
-.vid-pause-btn{display:none;position:absolute;bottom:78px;left:10px;background:rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.25);color:#fff;border-radius:50%;width:36px;height:36px;font-size:1rem;cursor:pointer;z-index:5;align-items:center;justify-content:center;transition:background .2s;}
+.vid-card.playing .vid-mute-btn{display:flex}
+.vid-pause-btn{display:none;position:absolute;bottom:78px;left:10px;background:rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.25);color:#fff;border-radius:50%;width:36px;height:36px;font-size:1rem;cursor:pointer;z-index:5;align-items:center;justify-content:center;transition:background .2s}
 .vid-pause-btn:hover{background:rgba(0,0,0,.8)}
-.vid-card.playing .vid-pause-btn{display:flex;}
-.vid-card-info{padding:.85rem 1.1rem 1rem;background:linear-gradient(to bottom,#1a1a1a,#111);border-top:1px solid rgba(255,255,255,.06);position:relative;z-index:2;}
+.vid-card.playing .vid-pause-btn{display:flex}
+.vid-card-info{padding:.85rem 1.1rem 1rem;background:linear-gradient(to bottom,#1a1a1a,#111);border-top:1px solid rgba(255,255,255,.06);position:relative;z-index:2}
 .vid-card-cat{font-size:.58rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:.22rem}
 .vid-card-caption{font-family:var(--serif);font-size:.98rem;font-weight:600;color:rgba(255,255,255,.88);line-height:1.3}
 .vs-dots{display:flex;gap:.45rem;justify-content:center;margin-top:1.6rem}
 .vs-dot{width:6px;height:6px;border-radius:50%;background:var(--border);border:none;cursor:pointer;padding:0;transition:all .25s}
 .vs-dot.on{background:var(--gold);width:18px;border-radius:3px}
 </style>
+
 <script>
-      (function() {
-        function initNav() {
-          var btn = document.querySelector('.nav-toggle');
-          var nav = document.getElementById('mobileNav');
-          if (!btn || !nav) return;
-          btn.addEventListener('click', function(e) { e.stopPropagation(); var o = nav.classList.toggle('nav-open'); btn.classList.toggle('is-open', o); });
-          document.addEventListener('click', function(e) { if (!btn.contains(e.target) && !nav.contains(e.target)) { nav.classList.remove('nav-open'); btn.classList.remove('is-open'); } });
-          nav.querySelectorAll('a').forEach(function(a) { a.addEventListener('click', function() { nav.classList.remove('nav-open'); btn.classList.remove('is-open'); }); });
-        }
-        if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', initNav); } else { initNav(); }
-      })();
-    </script>
+(function(){
+  function initNav(){
+    var btn=document.querySelector('.nav-toggle');
+    var nav=document.getElementById('mobileNav');
+    if(!btn||!nav)return;
+    function open(){nav.classList.add('nav-open');btn.classList.add('is-open')}
+    function close(){nav.classList.remove('nav-open');btn.classList.remove('is-open')}
+    btn.addEventListener('click',function(e){e.stopPropagation();nav.classList.contains('nav-open')?close():open()});
+    document.addEventListener('click',function(e){if(!btn.contains(e.target)&&!nav.contains(e.target))close()});
+    nav.querySelectorAll('a').forEach(function(a){a.addEventListener('click',close)});
+    var cb=document.getElementById('mobileNavClose');
+    if(cb)cb.addEventListener('click',close);
+  }
+  document.readyState==='loading'?document.addEventListener('DOMContentLoaded',initNav):initNav();
+})();
+</script>
 </head>
 <body class="page">
 
-<!-- ========== HEADER (from index.html) ========== -->
 <header class="site-header">
   <div class="container">
     <nav class="nav">
       <a href="index.html" class="nav-brand">
-        <img class="nav-logo" src="assets/img/image.png" alt="Sonsek logo" style="width:64px;height:64px;border-radius:12px;object-fit:contain;" />
+        <img class="nav-logo" src="assets/img/image.png" alt="Sonsek logo" style="width:64px;height:64px;border-radius:12px;object-fit:contain;"/>
         <div class="nav-title">
-          <span class="nav-title-main" style="font-size:1.05rem;font-weight:800;letter-spacing:0.01em;line-height:1.2;display:block;"><strong>Sonsek Integrated Services LTD</strong></span>
-          <em class="nav-title-sub" style="font-size:0.67rem;color:var(--color-primary-dark,#1a6b3c);display:block;">Cleaning With Care, Fumigation With Precision</em>
+          <span class="nav-title-main" style="font-size:1.05rem;font-weight:800;letter-spacing:.01em;line-height:1.2;display:block;"><strong>Sonsek Integrated Services LTD</strong></span>
+          <em class="nav-title-sub" style="font-size:.67rem;color:#1a6b3c;display:block;">Cleaning With Care, Fumigation With Precision</em>
         </div>
       </a>
       <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="services.html">Services</a>
-        <a href="gallery.html" style="color:var(--color-primary,#1a7a42);font-weight:700;">Gallery</a>
-        <a href="reviews.html">Reviews</a>
-        <a href="contact.html">Contact</a>
+        <a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a>
+        <a href="gallery.html" style="color:#1a7a42;font-weight:700;">Gallery</a>
+        <a href="reviews.html">Reviews</a><a href="contact.html">Contact</a>
       </div>
       <div class="nav-cta">
         <div class="nav-phone"><span>Call us:</span><strong>0902 452 4116</strong></div>
         <a href="booking.html" class="btn btn-primary btn-sm">Book a Cleaning</a>
       </div>
-      <button class="nav-toggle" aria-label="Toggle navigation"><span></span></button>
+      <button class="nav-toggle" aria-label="Toggle menu"><span></span></button>
     </nav>
     <div class="nav-links-mobile" id="mobileNav">
+      <div class="mob-nav-header">
+        <span>Menu</span>
+        <button class="mob-nav-close-btn" id="mobileNavClose" aria-label="Close menu">&#10005;</button>
+      </div>
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
       <a href="services.html">Services</a>
@@ -207,7 +294,6 @@
     </div>
   </div>
 </header>
-<!-- ========== END HEADER ========== -->
 
 <main>
 
@@ -224,13 +310,13 @@
       </div>
     </div>
     <div class="hero-slide">
-      <img src="assets/img/gallery/son2.jpeg" alt="Fumigation team in hi-vis PPE" loading="lazy"/>
+      <img src="assets/img/gallery/son2.jpeg" alt="Post construction polishing" loading="lazy"/>
       <div class="hero-veil"></div>
       <div class="hero-body container">
-        <div class="hero-chip">Fumigation</div>
+        <div class="hero-chip">Post construction transformation</div>
         <h1 class="hero-h1">Precision Post Construction<br><em>Polishing</em></h1>
-        <p class="hero-sub">Certified teams, industrial-grade equipment and approved chemicals — protecting your home and business.</p>
-        <span class="hero-pill">Fumigation &amp; Pest Control</span>
+        <p class="hero-sub">After construction, we provide detailed polishing to remove dust, stains, and residue, leaving surfaces smooth, spotless, and beautifully finished for a clean, polished look.</p>
+        <span class="hero-pill">Post construction</span>
       </div>
     </div>
     <div class="hero-slide">
@@ -244,34 +330,34 @@
       </div>
     </div>
     <div class="hero-slide">
-      <img src="assets/img/gallery/son6.jpeg" alt="Polished marble floor" loading="lazy"/>
+      <img src="assets/img/gallery/son6.jpeg" alt="Polished door" loading="lazy"/>
       <div class="hero-veil"></div>
       <div class="hero-body container">
         <div class="hero-chip">Door Care</div>
-        <h1 class="hero-h1">Door Polished<br>to a <em>Mirror Finish</em></h1>
-        <p class="hero-sub">Industrial machines and specialist products for every floor type — marble, tile, carpet and more.</p>
-        <span class="hero-pill">Floor Care &amp; Carpet</span>
+        <h1 class="hero-h1">Doors Polished<br>to a <em>Mirror Finish</em></h1>
+        <p class="hero-sub">Our professional polishing service restores doors to a flawless, glossy shine, removing scratches and dullness to give them a smooth, mirror-like finish.</p>
+        <span class="hero-pill">Door care &amp; Polish</span>
       </div>
     </div>
     <div class="hero-slide">
       <img src="assets/img/gallery/son14.jpeg" alt="Diamond paving driveway" loading="lazy"/>
       <div class="hero-veil"></div>
       <div class="hero-body container">
-        <div class="hero-chip">Outdoor &amp; Paving</div>
-        <h1 class="hero-h1">Bedroom Rug <br><em>Transformed</em></h1>
-        <p class="hero-sub">Stunning before-and-after outdoor transformations — paving, compounds and terraces restored to perfection.</p>
-        <span class="hero-pill">Outdoor &amp; Paving</span>
+        <div class="hero-chip">interior transformation</div>
+        <h1 class="hero-h1">Bedroom Rug<br><em>Transformed</em></h1>
+        <p class="hero-sub">We deep-clean and restore your bedroom rugs, removing dust, stains, and trapped allergens to bring back their softness, color, and fresh appearance.</p>
+        <span class="hero-pill">Interior &amp; Rugs</span>
       </div>
     </div>
   </div>
   <button type="button" class="hero-arrow prev" id="heroPrev" aria-label="Previous slide">&#8249;</button>
   <button type="button" class="hero-arrow next" id="heroNext" aria-label="Next slide">&#8250;</button>
   <div class="hero-dots" id="heroDots">
-    <button type="button" class="h-dot on" data-i="0"></button>
-    <button type="button" class="h-dot" data-i="1"></button>
-    <button type="button" class="h-dot" data-i="2"></button>
-    <button type="button" class="h-dot" data-i="3"></button>
-    <button type="button" class="h-dot" data-i="4"></button>
+    <button type="button" class="h-dot on" data-i="0">1</button>
+    <button type="button" class="h-dot" data-i="1">2</button>
+    <button type="button" class="h-dot" data-i="2">3</button>
+    <button type="button" class="h-dot" data-i="3">4</button>
+    <button type="button" class="h-dot" data-i="4">5</button>
   </div>
 </section>
 
@@ -294,30 +380,13 @@
       <div class="cat-count">01</div>
     </div>
     <div class="pslider-wrap" id="wrap-post">
-      <div class="pslider-viewport">
-        <div class="pslider-track" id="track-post">
-          <div class="photo-card" data-img="assets/img/gallery/son2.jpeg" data-cat="Post-Construction" data-cap="Fumigation team — fully kitted with hi-vis PPE and backpack sprayers">
-            <div class="photo-card-img"><img src="assets/img/gallery/son2.jpeg" alt="Fumigation team in hi-vis PPE" loading="lazy"/></div>
-            <div class="photo-card-info"><div class="photo-card-cat">Post-Construction</div><div class="photo-card-caption">Before and After — Door Cleaning and Polishing</div></div>
-          </div>
-          <div class="photo-card" data-img="assets/img/gallery/son3.jpeg" data-cat="Post-Construction" data-cap="Before &amp; after — construction site cleared, beautiful door installed">
-            <div class="photo-card-img"><img src="assets/img/gallery/son3.jpeg" alt="Before and after door installation" loading="lazy"/></div>
-            <div class="photo-card-info"><div class="photo-card-cat">Post-Construction</div><div class="photo-card-caption">Before &amp; after — site cleared, door installed</div></div>
-          </div>
-          <div class="photo-card" data-img="assets/img/gallery/son4.jpeg" data-cat="Post-Construction" data-cap="Door refinished — faded surface transformed to a deep gloss finish">
-            <div class="photo-card-img"><img src="assets/img/gallery/son4.jpeg" alt="Door refinishing before and after" loading="lazy"/></div>
-            <div class="photo-card-info"><div class="photo-card-cat">Post-Construction</div><div class="photo-card-caption">Before and After — Windows Cleaning and Polishing</div></div>
-          </div>
-          <div class="photo-card" data-img="assets/img/gallery/son7.jpeg" data-cat="Post-Construction" data-cap="Interior door polished to a rich warm mahogany finish">
-            <div class="photo-card-img"><img src="assets/img/gallery/son7.jpeg" alt="Polished mahogany interior door" loading="lazy"/></div>
-            <div class="photo-card-info"><div class="photo-card-cat">Post-Construction</div><div class="photo-card-caption">Interior door polished to rich mahogany</div></div>
-          </div>
-          <div class="photo-card" data-img="assets/img/gallery/son8.jpeg" data-cat="Post-Construction" data-cap="Bathroom door — broken frame completely replaced and finished">
-            <div class="photo-card-img"><img src="assets/img/gallery/son8.jpeg" alt="Bathroom door replacement" loading="lazy"/></div>
-            <div class="photo-card-info"><div class="photo-card-cat">Post-Construction</div><div class="photo-card-caption">Before and After — Polishing of stamped floor</div></div>
-          </div>
-        </div>
-      </div>
+      <div class="pslider-viewport"><div class="pslider-track" id="track-post">
+        <div class="photo-card" data-img="assets/img/gallery/son2.jpeg" data-cat="Post-Construction" data-cap="Fumigation team — fully kitted with hi-vis PPE and backpack sprayers"><div class="photo-card-img"><img src="assets/img/gallery/son2.jpeg" alt="Fumigation team in hi-vis PPE" loading="lazy"/></div><div class="photo-card-info"><div class="photo-card-cat">Post-Construction</div><div class="photo-card-caption">Before and After — Door Cleaning and Polishing</div></div></div>
+        <div class="photo-card" data-img="assets/img/gallery/son3.jpeg" data-cat="Post-Construction" data-cap="Before &amp; after — construction site cleared, beautiful door installed"><div class="photo-card-img"><img src="assets/img/gallery/son3.jpeg" alt="Before and after door installation" loading="lazy"/></div><div class="photo-card-info"><div class="photo-card-cat">Post-Construction</div><div class="photo-card-caption">Before &amp; after — site cleared, door installed</div></div></div>
+        <div class="photo-card" data-img="assets/img/gallery/son4.jpeg" data-cat="Post-Construction" data-cap="Door refinished — faded surface transformed to deep gloss"><div class="photo-card-img"><img src="assets/img/gallery/son4.jpeg" alt="Door refinishing" loading="lazy"/></div><div class="photo-card-info"><div class="photo-card-cat">Post-Construction</div><div class="photo-card-caption">Before and After — Windows Cleaning and Polishing</div></div></div>
+        <div class="photo-card" data-img="assets/img/gallery/son7.jpeg" data-cat="Post-Construction" data-cap="Interior door polished to a rich warm mahogany finish"><div class="photo-card-img"><img src="assets/img/gallery/son7.jpeg" alt="Polished mahogany interior door" loading="lazy"/></div><div class="photo-card-info"><div class="photo-card-cat">Post-Construction</div><div class="photo-card-caption">Interior door polished to rich mahogany</div></div></div>
+        <div class="photo-card" data-img="assets/img/gallery/son8.jpeg" data-cat="Post-Construction" data-cap="Bathroom door — broken frame completely replaced and finished"><div class="photo-card-img"><img src="assets/img/gallery/son8.jpeg" alt="Bathroom door replacement" loading="lazy"/></div><div class="photo-card-info"><div class="photo-card-cat">Post-Construction</div><div class="photo-card-caption">Before and After — Polishing of stamped floor</div></div></div>
+      </div></div>
       <button type="button" class="ps-arrow ps-prev" data-track="track-post" data-wrap="wrap-post">&#8249;</button>
       <button type="button" class="ps-arrow ps-next" data-track="track-post" data-wrap="wrap-post">&#8250;</button>
       <div class="ps-dots" id="dots-post"></div>
@@ -329,33 +398,19 @@
   <div class="container">
     <div class="cat-head">
       <div class="cat-head-left">
-        <div class="cat-num">Category 03</div>
+        <div class="cat-num">Category 02</div>
         <h2 class="cat-title">Deep Cleaning</h2>
         <p class="cat-desc">From corroded window frames to heavily soiled surfaces — our deep cleaning removes every trace of grime and leaves nothing behind.</p>
       </div>
-      <div class="cat-count">03</div>
+      <div class="cat-count">02</div>
     </div>
     <div class="pslider-wrap" id="wrap-deep">
-      <div class="pslider-viewport">
-        <div class="pslider-track" id="track-deep">
-          <div class="photo-card" data-img="assets/img/gallery/son5.jpeg" data-cat="Deep Cleaning" data-cap="Window grilles — years of corrosion and grime fully removed">
-            <div class="photo-card-img"><img src="assets/img/gallery/son5.jpeg" alt="Window grille deep clean" loading="lazy"/></div>
-            <div class="photo-card-info"><div class="photo-card-cat">Deep Cleaning</div><div class="photo-card-caption">Bedroom tiles sparkling polished</div></div>
-          </div>
-          <div class="photo-card" data-img="assets/img/gallery/son18.jpeg" data-cat="Deep Cleaning" data-cap="Toilet deep clean — before &amp; after">
-            <div class="photo-card-img"><img src="assets/img/gallery/son18.jpeg" alt="Toilet before and after deep clean" loading="lazy"/></div>
-            <div class="photo-card-info"><div class="photo-card-cat">Deep Cleaning</div><div class="photo-card-caption">Toilet deep clean — before &amp; after</div></div>
-          </div>
-          <div class="photo-card" data-img="assets/img/gallery/son19.jpeg" data-cat="Deep Cleaning" data-cap="Toilet after — spotless and sanitised">
-            <div class="photo-card-img"><img src="assets/img/gallery/son19.jpeg" alt="Toilet after deep clean" loading="lazy"/></div>
-            <div class="photo-card-info"><div class="photo-card-cat">Deep Cleaning</div><div class="photo-card-caption">Toilet after — spotless &amp; sanitised</div></div>
-          </div>
-          <div class="photo-card" data-img="assets/img/gallery/son20.jpeg" data-cat="Deep Cleaning" data-cap="Toilet before — heavy grime removed">
-            <div class="photo-card-img"><img src="assets/img/gallery/son20.jpeg" alt="Toilet before deep clean" loading="lazy"/></div>
-            <div class="photo-card-info"><div class="photo-card-cat">Deep Cleaning</div><div class="photo-card-caption">Toilet before — deep grime removed</div></div>
-          </div>
-        </div>
-      </div>
+      <div class="pslider-viewport"><div class="pslider-track" id="track-deep">
+        <div class="photo-card" data-img="assets/img/gallery/son5.jpeg" data-cat="Deep Cleaning" data-cap="Window grilles — years of corrosion and grime fully removed"><div class="photo-card-img"><img src="assets/img/gallery/son5.jpeg" alt="Window grille deep clean" loading="lazy"/></div><div class="photo-card-info"><div class="photo-card-cat">Deep Cleaning</div><div class="photo-card-caption">Bedroom tiles sparkling polished</div></div></div>
+        <div class="photo-card" data-img="assets/img/gallery/son18.jpeg" data-cat="Deep Cleaning" data-cap="Toilet deep clean — before &amp; after"><div class="photo-card-img"><img src="assets/img/gallery/son18.jpeg" alt="Toilet before and after deep clean" loading="lazy"/></div><div class="photo-card-info"><div class="photo-card-cat">Deep Cleaning</div><div class="photo-card-caption">Toilet deep clean — before &amp; after</div></div></div>
+        <div class="photo-card" data-img="assets/img/gallery/son19.jpeg" data-cat="Deep Cleaning" data-cap="Toilet after — spotless and sanitised"><div class="photo-card-img"><img src="assets/img/gallery/son19.jpeg" alt="Toilet after deep clean" loading="lazy"/></div><div class="photo-card-info"><div class="photo-card-cat">Deep Cleaning</div><div class="photo-card-caption">Toilet after — spotless &amp; sanitised</div></div></div>
+        <div class="photo-card" data-img="assets/img/gallery/son20.jpeg" data-cat="Deep Cleaning" data-cap="Toilet before — heavy grime removed"><div class="photo-card-img"><img src="assets/img/gallery/son20.jpeg" alt="Toilet before deep clean" loading="lazy"/></div><div class="photo-card-info"><div class="photo-card-cat">Deep Cleaning</div><div class="photo-card-caption">Toilet before — deep grime removed</div></div></div>
+      </div></div>
       <button type="button" class="ps-arrow ps-prev" data-track="track-deep" data-wrap="wrap-deep">&#8249;</button>
       <button type="button" class="ps-arrow ps-next" data-track="track-deep" data-wrap="wrap-deep">&#8250;</button>
       <div class="ps-dots" id="dots-deep"></div>
@@ -367,29 +422,18 @@
   <div class="container">
     <div class="cat-head">
       <div class="cat-head-left">
-        <div class="cat-num">Category 04</div>
+        <div class="cat-num">Category 03</div>
         <h2 class="cat-title">Floor Care &amp;<br>Carpet Cleaning</h2>
         <p class="cat-desc">Industrial polishing machines and specialist products for every floor type — marble, ceramic tile, and carpet.</p>
       </div>
-      <div class="cat-count">04</div>
+      <div class="cat-count">03</div>
     </div>
     <div class="pslider-wrap" id="wrap-floor">
-      <div class="pslider-viewport">
-        <div class="pslider-track" id="track-floor">
-          <div class="photo-card" data-img="assets/img/gallery/son11.jpeg" data-cat="Floor Care" data-cap="Industrial rotary polishing machine in action on tile floor">
-            <div class="photo-card-img"><img src="assets/img/gallery/son11.jpeg" alt="Industrial floor polishing machine" loading="lazy"/></div>
-            <div class="photo-card-info"><div class="photo-card-cat">Floor Care</div><div class="photo-card-caption">Compound exterior — full transformation</div></div>
-          </div>
-          <div class="photo-card" data-img="assets/img/gallery/son15.jpeg" data-cat="Carpet Cleaning" data-cap="Bedroom carpet deeply cleaned and refreshed">
-            <div class="photo-card-img"><img src="assets/img/gallery/son15.jpeg" alt="Freshly cleaned bedroom carpet" loading="lazy"/></div>
-            <div class="photo-card-info"><div class="photo-card-cat">Carpet Cleaning</div><div class="photo-card-caption">Boardroom carpet — deeply cleaned &amp; refreshed</div></div>
-          </div>
-          <div class="photo-card" data-img="assets/img/gallery/son14.jpeg" data-cat="Outdoor &amp; Paving" data-cap="Driveway completed — diamond-pattern paving with lush garden surrounds">
-            <div class="photo-card-img"><img src="assets/img/gallery/son14.jpeg" alt="Diamond paving driveway" loading="lazy"/></div>
-            <div class="photo-card-info"><div class="photo-card-cat">Outdoor &amp; Paving</div><div class="photo-card-caption">Bedroom carpet — deeply cleaned and sanitized</div></div>
-          </div>
-        </div>
-      </div>
+      <div class="pslider-viewport"><div class="pslider-track" id="track-floor">
+        <div class="photo-card" data-img="assets/img/gallery/son11.jpeg" data-cat="Floor Care" data-cap="Industrial rotary polishing machine in action on tile floor"><div class="photo-card-img"><img src="assets/img/gallery/son11.jpeg" alt="Industrial floor polishing machine" loading="lazy"/></div><div class="photo-card-info"><div class="photo-card-cat">Floor Care</div><div class="photo-card-caption">Compound exterior — full transformation</div></div></div>
+        <div class="photo-card" data-img="assets/img/gallery/son15.jpeg" data-cat="Carpet Cleaning" data-cap="Bedroom carpet deeply cleaned and refreshed"><div class="photo-card-img"><img src="assets/img/gallery/son15.jpeg" alt="Freshly cleaned bedroom carpet" loading="lazy"/></div><div class="photo-card-info"><div class="photo-card-cat">Carpet Cleaning</div><div class="photo-card-caption">Boardroom carpet — deeply cleaned &amp; refreshed</div></div></div>
+        <div class="photo-card" data-img="assets/img/gallery/son14.jpeg" data-cat="Outdoor &amp; Paving" data-cap="Driveway completed — diamond-pattern paving with lush garden surrounds"><div class="photo-card-img"><img src="assets/img/gallery/son14.jpeg" alt="Diamond paving driveway" loading="lazy"/></div><div class="photo-card-info"><div class="photo-card-cat">Outdoor &amp; Paving</div><div class="photo-card-caption">Bedroom carpet — deeply cleaned and sanitized</div></div></div>
+      </div></div>
       <button type="button" class="ps-arrow ps-prev" data-track="track-floor" data-wrap="wrap-floor">&#8249;</button>
       <button type="button" class="ps-arrow ps-next" data-track="track-floor" data-wrap="wrap-floor">&#8250;</button>
       <div class="ps-dots" id="dots-floor"></div>
@@ -401,33 +445,19 @@
   <div class="container">
     <div class="cat-head">
       <div class="cat-head-left">
-        <div class="cat-num">Category 05</div>
+        <div class="cat-num">Category 04</div>
         <h2 class="cat-title">Outdoor &amp; Paving</h2>
         <p class="cat-desc">Driveways, compounds, terraces and paving blocks — restored to a standard that impresses every visitor.</p>
       </div>
-      <div class="cat-count">05</div>
+      <div class="cat-count">04</div>
     </div>
     <div class="pslider-wrap" id="wrap-out">
-      <div class="pslider-viewport">
-        <div class="pslider-track" id="track-out">
-          <div class="photo-card" data-img="assets/img/gallery/son9.jpeg" data-cat="Outdoor &amp; Paving" data-cap="Paving restored — stained and cracked tiles revived beautifully">
-            <div class="photo-card-img"><img src="assets/img/gallery/son9.jpeg" alt="Paving before and after restoration" loading="lazy"/></div>
-            <div class="photo-card-info"><div class="photo-card-cat">Outdoor &amp; Paving</div><div class="photo-card-caption">Walls restoration — stained tiles revived</div></div>
-          </div>
-          <div class="photo-card" data-img="assets/img/gallery/son10.jpeg" data-cat="Outdoor &amp; Paving" data-cap="Compound exterior — dramatic full transformation">
-            <div class="photo-card-img"><img src="assets/img/gallery/son10.jpeg" alt="Compound exterior transformation" loading="lazy"/></div>
-            <div class="photo-card-info"><div class="photo-card-cat">Outdoor &amp; Paving</div><div class="photo-card-caption">Industrial rotary polisher — tile floor</div></div>
-          </div>
-          <div class="photo-card" data-img="assets/img/gallery/son12.jpeg" data-cat="Outdoor &amp; Paving" data-cap="Outdoor patio tiles — deep cleaned and gleaming like new">
-            <div class="photo-card-img"><img src="assets/img/gallery/son12.jpeg" alt="Outdoor patio deep cleaned" loading="lazy"/></div>
-            <div class="photo-card-info"><div class="photo-card-cat">Outdoor &amp; Paving</div><div class="photo-card-caption">Patio tiles — deep cleaned and gleaming</div></div>
-          </div>
-          <div class="photo-card" data-img="assets/img/gallery/son13.jpeg" data-cat="Outdoor &amp; Paving" data-cap="Terracotta and black tile paving — freshly completed in geometric pattern">
-            <div class="photo-card-img"><img src="assets/img/gallery/son13.jpeg" alt="Terracotta and black tile paving" loading="lazy"/></div>
-            <div class="photo-card-info"><div class="photo-card-cat">Outdoor &amp; Paving</div><div class="photo-card-caption">Terracotta &amp; black paving — freshly done</div></div>
-          </div>
-        </div>
-      </div>
+      <div class="pslider-viewport"><div class="pslider-track" id="track-out">
+        <div class="photo-card" data-img="assets/img/gallery/son9.jpeg" data-cat="Outdoor &amp; Paving" data-cap="Paving restored — stained and cracked tiles revived beautifully"><div class="photo-card-img"><img src="assets/img/gallery/son9.jpeg" alt="Paving restoration" loading="lazy"/></div><div class="photo-card-info"><div class="photo-card-cat">Outdoor &amp; Paving</div><div class="photo-card-caption">Walls restoration — stained tiles revived</div></div></div>
+        <div class="photo-card" data-img="assets/img/gallery/son10.jpeg" data-cat="Outdoor &amp; Paving" data-cap="Compound exterior — dramatic full transformation"><div class="photo-card-img"><img src="assets/img/gallery/son10.jpeg" alt="Compound exterior transformation" loading="lazy"/></div><div class="photo-card-info"><div class="photo-card-cat">Outdoor &amp; Paving</div><div class="photo-card-caption">Industrial rotary polisher — tile floor</div></div></div>
+        <div class="photo-card" data-img="assets/img/gallery/son12.jpeg" data-cat="Outdoor &amp; Paving" data-cap="Outdoor patio tiles — deep cleaned and gleaming like new"><div class="photo-card-img"><img src="assets/img/gallery/son12.jpeg" alt="Outdoor patio deep cleaned" loading="lazy"/></div><div class="photo-card-info"><div class="photo-card-cat">Outdoor &amp; Paving</div><div class="photo-card-caption">Patio tiles — deep cleaned and gleaming</div></div></div>
+        <div class="photo-card" data-img="assets/img/gallery/son13.jpeg" data-cat="Outdoor &amp; Paving" data-cap="Terracotta and black tile paving — freshly completed in geometric pattern"><div class="photo-card-img"><img src="assets/img/gallery/son13.jpeg" alt="Terracotta and black tile paving" loading="lazy"/></div><div class="photo-card-info"><div class="photo-card-cat">Outdoor &amp; Paving</div><div class="photo-card-caption">Terracotta &amp; black paving — freshly done</div></div></div>
+      </div></div>
       <button type="button" class="ps-arrow ps-prev" data-track="track-out" data-wrap="wrap-out">&#8249;</button>
       <button type="button" class="ps-arrow ps-next" data-track="track-out" data-wrap="wrap-out">&#8250;</button>
       <div class="ps-dots" id="dots-out"></div>
@@ -439,29 +469,18 @@
   <div class="container">
     <div class="cat-head">
       <div class="cat-head-left">
-        <div class="cat-num">Category 06</div>
+        <div class="cat-num">Category 05</div>
         <h2 class="cat-title">Corporate &amp;<br>Commercial</h2>
         <p class="cat-desc">Trusted by leading businesses — from Sahara Energy to executive boardrooms. We clean commercial spaces to the highest standard.</p>
       </div>
-      <div class="cat-count">06</div>
+      <div class="cat-count">05</div>
     </div>
     <div class="pslider-wrap" id="wrap-corp">
-      <div class="pslider-viewport">
-        <div class="pslider-track" id="track-corp">
-          <div class="photo-card" data-img="assets/img/gallery/sonsek1.jpeg" data-cat="Corporate" data-cap="Sonsek team pressure-washing a large commercial courtyard">
-            <div class="photo-card-img"><img src="assets/img/gallery/sonsek1.jpeg" alt="Team pressure-washing commercial courtyard" loading="lazy"/></div>
-            <div class="photo-card-info"><div class="photo-card-cat">Corporate</div><div class="photo-card-caption">Team pressure-washing commercial courtyard</div></div>
-          </div>
-          <div class="photo-card" data-img="assets/img/gallery/son16.jpeg" data-cat="Corporate" data-cap="Executive boardroom — red carpet machine-cleaned to perfection">
-            <div class="photo-card-img"><img src="assets/img/gallery/son16.jpeg" alt="Boardroom carpet being machine-cleaned" loading="lazy"/></div>
-            <div class="photo-card-info"><div class="photo-card-cat">Corporate</div><div class="photo-card-caption">Reception area cleaned and polished</div></div>
-          </div>
-          <div class="photo-card" data-img="assets/img/gallery/son17.jpeg" data-cat="Commercial" data-cap="Sahara Energy office — full commercial post-construction clean">
-            <div class="photo-card-img"><img src="assets/img/gallery/son17.jpeg" alt="Sahara Energy office commercial clean" loading="lazy"/></div>
-            <div class="photo-card-info"><div class="photo-card-cat">Commercial</div><div class="photo-card-caption">Sahara Energy office — full commercial clean</div></div>
-          </div>
-        </div>
-      </div>
+      <div class="pslider-viewport"><div class="pslider-track" id="track-corp">
+        <div class="photo-card" data-img="assets/img/gallery/sonsek1.jpeg" data-cat="Corporate" data-cap="Sonsek team pressure-washing a large commercial courtyard"><div class="photo-card-img"><img src="assets/img/gallery/sonsek1.jpeg" alt="Team pressure-washing courtyard" loading="lazy"/></div><div class="photo-card-info"><div class="photo-card-cat">Corporate</div><div class="photo-card-caption">Team pressure-washing commercial courtyard</div></div></div>
+        <div class="photo-card" data-img="assets/img/gallery/son16.jpeg" data-cat="Corporate" data-cap="Executive boardroom — red carpet machine-cleaned to perfection"><div class="photo-card-img"><img src="assets/img/gallery/son16.jpeg" alt="Boardroom carpet machine-cleaned" loading="lazy"/></div><div class="photo-card-info"><div class="photo-card-cat">Corporate</div><div class="photo-card-caption">Reception area cleaned and polished</div></div></div>
+        <div class="photo-card" data-img="assets/img/gallery/son17.jpeg" data-cat="Commercial" data-cap="Sahara Energy office — full commercial post-construction clean"><div class="photo-card-img"><img src="assets/img/gallery/son17.jpeg" alt="Sahara Energy office commercial clean" loading="lazy"/></div><div class="photo-card-info"><div class="photo-card-cat">Commercial</div><div class="photo-card-caption">Sahara Energy office — full commercial clean</div></div></div>
+      </div></div>
       <button type="button" class="ps-arrow ps-prev" data-track="track-corp" data-wrap="wrap-corp">&#8249;</button>
       <button type="button" class="ps-arrow ps-next" data-track="track-corp" data-wrap="wrap-corp">&#8250;</button>
       <div class="ps-dots" id="dots-corp"></div>
@@ -473,66 +492,22 @@
   <div class="container">
     <div class="cat-head">
       <div class="cat-head-left">
-        <div class="cat-num">Category 07</div>
+        <div class="cat-num">Category 06</div>
         <h2 class="cat-title">Watch Us<br><em style="font-style:italic">Work</em></h2>
         <p class="cat-desc">Real footage from actual Sonsek jobs across Nigeria. Tap the play button on any video to watch.</p>
       </div>
-      <div class="cat-count">07</div>
+      <div class="cat-count">06</div>
     </div>
     <div class="vslider-wrap" id="wrap-vid">
-      <div class="vslider-viewport">
-        <div class="vslider-track" id="track-vid">
-          <div class="vid-card" id="vc1">
-            <video src="assets/vid/sonvid1.mp4" loop playsinline preload="auto" muted></video>
-            <div class="vid-play-btn" onclick="toggleVid('vc1')"><svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="40" r="38" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.5)" stroke-width="2"/><polygon points="32,24 60,40 32,56" fill="white"/></svg></div>
-            <button type="button" class="vid-pause-btn" onclick="toggleVid('vc1')" title="Pause">&#9208;</button>
-            <button type="button" class="vid-mute-btn" onclick="toggleMute('vc1')" title="Toggle sound">&#128263;</button>
-            <div class="vid-card-info"><div class="vid-card-cat">Sonsek in Action</div><div class="vid-card-caption">Live footage — fumigation in progress</div></div>
-          </div>
-          <div class="vid-card" id="vc2">
-            <video src="assets/vid/sonvid2.mp4" loop playsinline preload="auto" muted></video>
-            <div class="vid-play-btn" onclick="toggleVid('vc2')"><svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="40" r="38" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.5)" stroke-width="2"/><polygon points="32,24 60,40 32,56" fill="white"/></svg></div>
-            <button type="button" class="vid-pause-btn" onclick="toggleVid('vc2')" title="Pause">&#9208;</button>
-            <button type="button" class="vid-mute-btn" onclick="toggleMute('vc2')" title="Toggle sound">&#128263;</button>
-            <div class="vid-card-info"><div class="vid-card-cat">Sonsek in Action</div><div class="vid-card-caption">Team at work — fumigation in progress</div></div>
-          </div>
-          <div class="vid-card" id="vc3">
-            <video src="assets/vid/sonvid3.mp4" loop playsinline preload="auto" muted></video>
-            <div class="vid-play-btn" onclick="toggleVid('vc3')"><svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="40" r="38" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.5)" stroke-width="2"/><polygon points="32,24 60,40 32,56" fill="white"/></svg></div>
-            <button type="button" class="vid-pause-btn" onclick="toggleVid('vc3')" title="Pause">&#9208;</button>
-            <button type="button" class="vid-mute-btn" onclick="toggleMute('vc3')" title="Toggle sound">&#128263;</button>
-            <div class="vid-card-info"><div class="vid-card-cat">Sonsek in Action</div><div class="vid-card-caption">Tile scrubbing — Reviving floor tiles</div></div>
-          </div>
-          <div class="vid-card" id="vc4">
-            <video src="assets/vid/sonvid4.mp4" loop playsinline preload="auto" muted></video>
-            <div class="vid-play-btn" onclick="toggleVid('vc4')"><svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="40" r="38" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.5)" stroke-width="2"/><polygon points="32,24 60,40 32,56" fill="white"/></svg></div>
-            <button type="button" class="vid-pause-btn" onclick="toggleVid('vc4')" title="Pause">&#9208;</button>
-            <button type="button" class="vid-mute-btn" onclick="toggleMute('vc4')" title="Toggle sound">&#128263;</button>
-            <div class="vid-card-info"><div class="vid-card-cat">Sonsek in Action</div><div class="vid-card-caption">Fumigation &amp; treatment — live</div></div>
-          </div>
-          <div class="vid-card" id="vc5">
-            <video src="assets/vid/sonvid5.mp4" loop playsinline preload="auto" muted></video>
-            <div class="vid-play-btn" onclick="toggleVid('vc5')"><svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="40" r="38" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.5)" stroke-width="2"/><polygon points="32,24 60,40 32,56" fill="white"/></svg></div>
-            <button type="button" class="vid-pause-btn" onclick="toggleVid('vc5')" title="Pause">&#9208;</button>
-            <button type="button" class="vid-mute-btn" onclick="toggleMute('vc5')" title="Toggle sound">&#128263;</button>
-            <div class="vid-card-info"><div class="vid-card-cat">Sonsek in Action</div><div class="vid-card-caption">Post-construction clean — in action</div></div>
-          </div>
-          <div class="vid-card" id="vc6">
-            <video src="assets/vid/sonvid6.mp4" loop playsinline preload="auto" muted></video>
-            <div class="vid-play-btn" onclick="toggleVid('vc6')"><svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="40" r="38" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.5)" stroke-width="2"/><polygon points="32,24 60,40 32,56" fill="white"/></svg></div>
-            <button type="button" class="vid-pause-btn" onclick="toggleVid('vc6')" title="Pause">&#9208;</button>
-            <button type="button" class="vid-mute-btn" onclick="toggleMute('vc6')" title="Toggle sound">&#128263;</button>
-            <div class="vid-card-info"><div class="vid-card-cat">Sonsek in Action</div><div class="vid-card-caption">Washroom care — polishing in progress</div></div>
-          </div>
-          <div class="vid-card" id="vc7">
-            <video src="assets/vid/sonvid7.mp4" loop playsinline preload="auto" muted></video>
-            <div class="vid-play-btn" onclick="toggleVid('vc7')"><svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="40" r="38" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.5)" stroke-width="2"/><polygon points="32,24 60,40 32,56" fill="white"/></svg></div>
-            <button type="button" class="vid-pause-btn" onclick="toggleVid('vc7')" title="Pause">&#9208;</button>
-            <button type="button" class="vid-mute-btn" onclick="toggleMute('vc7')" title="Toggle sound">&#128263;</button>
-            <div class="vid-card-info"><div class="vid-card-cat">Sonsek in Action</div><div class="vid-card-caption">Deep cleaning — real transformation</div></div>
-          </div>
-        </div>
-      </div>
+      <div class="vslider-viewport"><div class="vslider-track" id="track-vid">
+        <div class="vid-card" id="vc1"><video src="assets/vid/sonvid1.mp4" loop playsinline preload="auto" muted></video><div class="vid-play-btn" onclick="toggleVid('vc1')"><svg viewBox="0 0 80 80" fill="none"><circle cx="40" cy="40" r="38" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.5)" stroke-width="2"/><polygon points="32,24 60,40 32,56" fill="white"/></svg></div><button type="button" class="vid-pause-btn" onclick="toggleVid('vc1')">&#9208;</button><button type="button" class="vid-mute-btn" onclick="toggleMute('vc1')">&#128263;</button><div class="vid-card-info"><div class="vid-card-cat">Sonsek in Action</div><div class="vid-card-caption">Live footage — fumigation in progress</div></div></div>
+        <div class="vid-card" id="vc2"><video src="assets/vid/sonvid2.mp4" loop playsinline preload="auto" muted></video><div class="vid-play-btn" onclick="toggleVid('vc2')"><svg viewBox="0 0 80 80" fill="none"><circle cx="40" cy="40" r="38" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.5)" stroke-width="2"/><polygon points="32,24 60,40 32,56" fill="white"/></svg></div><button type="button" class="vid-pause-btn" onclick="toggleVid('vc2')">&#9208;</button><button type="button" class="vid-mute-btn" onclick="toggleMute('vc2')">&#128263;</button><div class="vid-card-info"><div class="vid-card-cat">Sonsek in Action</div><div class="vid-card-caption">Team at work — fumigation in progress</div></div></div>
+        <div class="vid-card" id="vc3"><video src="assets/vid/sonvid3.mp4" loop playsinline preload="auto" muted></video><div class="vid-play-btn" onclick="toggleVid('vc3')"><svg viewBox="0 0 80 80" fill="none"><circle cx="40" cy="40" r="38" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.5)" stroke-width="2"/><polygon points="32,24 60,40 32,56" fill="white"/></svg></div><button type="button" class="vid-pause-btn" onclick="toggleVid('vc3')">&#9208;</button><button type="button" class="vid-mute-btn" onclick="toggleMute('vc3')">&#128263;</button><div class="vid-card-info"><div class="vid-card-cat">Sonsek in Action</div><div class="vid-card-caption">Tile scrubbing — Reviving floor tiles</div></div></div>
+        <div class="vid-card" id="vc4"><video src="assets/vid/sonvid4.mp4" loop playsinline preload="auto" muted></video><div class="vid-play-btn" onclick="toggleVid('vc4')"><svg viewBox="0 0 80 80" fill="none"><circle cx="40" cy="40" r="38" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.5)" stroke-width="2"/><polygon points="32,24 60,40 32,56" fill="white"/></svg></div><button type="button" class="vid-pause-btn" onclick="toggleVid('vc4')">&#9208;</button><button type="button" class="vid-mute-btn" onclick="toggleMute('vc4')">&#128263;</button><div class="vid-card-info"><div class="vid-card-cat">Sonsek in Action</div><div class="vid-card-caption">Fumigation &amp; treatment — live</div></div></div>
+        <div class="vid-card" id="vc5"><video src="assets/vid/sonvid5.mp4" loop playsinline preload="auto" muted></video><div class="vid-play-btn" onclick="toggleVid('vc5')"><svg viewBox="0 0 80 80" fill="none"><circle cx="40" cy="40" r="38" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.5)" stroke-width="2"/><polygon points="32,24 60,40 32,56" fill="white"/></svg></div><button type="button" class="vid-pause-btn" onclick="toggleVid('vc5')">&#9208;</button><button type="button" class="vid-mute-btn" onclick="toggleMute('vc5')">&#128263;</button><div class="vid-card-info"><div class="vid-card-cat">Sonsek in Action</div><div class="vid-card-caption">Post-construction clean — in action</div></div></div>
+        <div class="vid-card" id="vc6"><video src="assets/vid/sonvid6.mp4" loop playsinline preload="auto" muted></video><div class="vid-play-btn" onclick="toggleVid('vc6')"><svg viewBox="0 0 80 80" fill="none"><circle cx="40" cy="40" r="38" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.5)" stroke-width="2"/><polygon points="32,24 60,40 32,56" fill="white"/></svg></div><button type="button" class="vid-pause-btn" onclick="toggleVid('vc6')">&#9208;</button><button type="button" class="vid-mute-btn" onclick="toggleMute('vc6')">&#128263;</button><div class="vid-card-info"><div class="vid-card-cat">Sonsek in Action</div><div class="vid-card-caption">Washroom care — polishing in progress</div></div></div>
+        <div class="vid-card" id="vc7"><video src="assets/vid/sonvid7.mp4" loop playsinline preload="auto" muted></video><div class="vid-play-btn" onclick="toggleVid('vc7')"><svg viewBox="0 0 80 80" fill="none"><circle cx="40" cy="40" r="38" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.5)" stroke-width="2"/><polygon points="32,24 60,40 32,56" fill="white"/></svg></div><button type="button" class="vid-pause-btn" onclick="toggleVid('vc7')">&#9208;</button><button type="button" class="vid-mute-btn" onclick="toggleMute('vc7')">&#128263;</button><div class="vid-card-info"><div class="vid-card-cat">Sonsek in Action</div><div class="vid-card-caption">Deep cleaning — real transformation</div></div></div>
+      </div></div>
       <button type="button" class="ps-arrow ps-prev" data-track="track-vid" data-wrap="wrap-vid">&#8249;</button>
       <button type="button" class="ps-arrow ps-next" data-track="track-vid" data-wrap="wrap-vid">&#8250;</button>
       <div class="vs-dots" id="dots-vid"></div>
@@ -582,12 +557,9 @@
       <div class="footer-col-links">
         <div class="footer-heading">Quick links</div>
         <ul class="footer-links">
-          <li><a href="about.html">About us</a></li>
-          <li><a href="services.html">Our services</a></li>
-          <li><a href="gallery.html">Photo gallery</a></li>
-          <li><a href="booking.html">Book a service</a></li>
-          <li><a href="reviews.html">Customer reviews</a></li>
-          <li><a href="contact.html">Contact &amp; location</a></li>
+          <li><a href="about.html">About us</a></li><li><a href="services.html">Our services</a></li>
+          <li><a href="gallery.html">Photo gallery</a></li><li><a href="booking.html">Book a service</a></li>
+          <li><a href="reviews.html">Customer reviews</a></li><li><a href="contact.html">Contact &amp; location</a></li>
         </ul>
       </div>
       <div>
@@ -600,9 +572,9 @@
         </ul>
         <div style="margin-top:1rem;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;">
           <span style="color:rgba(255,255,255,.75);font-size:.82rem;font-weight:600;display:block;width:100%;margin-bottom:.3rem;">Follow us:</span>
-          <a href="https://www.facebook.com/share/1HHNgoJynz/" target="_blank" rel="noopener" aria-label="Facebook" style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);flex-shrink:0;"><svg viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987H7.898V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg></a>
-          <a href="https://www.instagram.com/sonsekltd?igsh=MTJ1NHJsYWU1d2xsMQ==" target="_blank" rel="noopener" aria-label="Instagram" style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);flex-shrink:0;"><svg viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
-          <a href="https://wa.me/2349024524116" target="_blank" rel="noopener" aria-label="WhatsApp" style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);flex-shrink:0;"><svg viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+          <a href="https://www.facebook.com/share/1HHNgoJynz/" target="_blank" rel="noopener" aria-label="Facebook" style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);flex-shrink:0;"><svg viewBox="0 0 24 24" fill="#fff"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987H7.898V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg></a>
+          <a href="https://www.instagram.com/sonsekltd?igsh=MTJ1NHJsYWU1d2xsMQ==" target="_blank" rel="noopener" aria-label="Instagram" style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);flex-shrink:0;"><svg viewBox="0 0 24 24" fill="#fff"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+          <a href="https://wa.me/2349024524116" target="_blank" rel="noopener" aria-label="WhatsApp" style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);flex-shrink:0;"><svg viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
         </div>
       </div>
     </div>
@@ -613,13 +585,9 @@
   </div>
 </footer>
 
-<div style="position:fixed;bottom:24px;right:24px;z-index:9999;">
-  <a href="https://wa.me/2349024524116?text=Hello%20Sonsek%2C%20I%27d%20like%20to%20book%20a%20cleaning%20service."
-     target="_blank" rel="noopener" aria-label="Chat on WhatsApp"
-     style="display:flex;align-items:center;justify-content:center;width:60px;height:60px;border-radius:50%;background:#25D366;text-decoration:none;box-shadow:0 4px 16px rgba(37,211,102,0.5);">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32">
-      <path fill="#ffffff" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 15 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67M8.53 7.33C8.37 7.33 8.1 7.39 7.87 7.64C7.65 7.89 7 8.5 7 9.71C7 10.93 7.89 12.1 8 12.27C8.14 12.44 9.76 14.94 12.25 16C12.84 16.27 13.3 16.42 13.66 16.53C14.25 16.72 14.79 16.69 15.22 16.63C15.7 16.56 16.68 16.03 16.89 15.45C17.1 14.87 17.1 14.38 17.04 14.27C16.97 14.17 16.81 14.11 16.56 14C16.31 13.86 15.09 13.26 14.87 13.18C14.64 13.1 14.5 13.06 14.31 13.3C14.15 13.55 13.67 14.11 13.53 14.27C13.38 14.44 13.24 14.46 13 14.34C12.74 14.21 11.94 13.88 11 13.05C10.26 12.38 9.77 11.56 9.62 11.31C9.47 11.07 9.6 10.93 9.72 10.81C9.83 10.7 9.97 10.52 10.08 10.38C10.2 10.24 10.24 10.14 10.32 9.97C10.4 9.81 10.36 9.67 10.3 9.55C10.24 9.44 9.77 8.2 9.57 7.73C9.37 7.26 9.17 7.33 9 7.32H8.53Z"/>
-    </svg>
+<div style="position:fixed;bottom:40px;right:24px;z-index:9999;">
+  <a href="https://wa.me/2349024524116?text=Hello%20Sonsek%2C%20I%27d%20like%20to%20book%20a%20cleaning%20service." target="_blank" rel="noopener" aria-label="Chat on WhatsApp" style="display:flex;align-items:center;justify-content:center;width:58px;height:58px;border-radius:16px;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,.45),0 2px 8px rgba(0,0,0,.18);background:radial-gradient(circle at 30% 107%,#25d366 0%,#128c7e 60%,#075e54 90%);transition:transform .2s,box-shadow .2s;" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 28px rgba(37,211,102,.55),0 4px 12px rgba(0,0,0,.2)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 4px 20px rgba(37,211,102,.45),0 2px 8px rgba(0,0,0,.18)'">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="34" height="34" fill="none"><path fill="#fff" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path fill="#fff" fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 1.89.523 3.656 1.435 5.163L2 22l4.926-1.41A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.182a8.182 8.182 0 01-4.274-1.204l-.306-.183-3.172.907.894-3.265-.2-.332A8.182 8.182 0 1112 20.182z"/></svg>
   </a>
 </div>
 
@@ -647,8 +615,7 @@ SLIDERS.forEach(function(s){
   buildDots();window.addEventListener('resize',buildDots);
   function updDots(){dotsEl.querySelectorAll('.ps-dot').forEach(function(d,i){d.classList.toggle('on',i===idx);});}
   function goTo(n){idx=Math.max(0,Math.min(n,maxI()));var cw=cards[0]?cards[0].getBoundingClientRect().width:0;track.style.transform='translateX(-'+(idx*(cw+24))+'px)';updDots();}
-  var btns=wrapEl.querySelectorAll('.ps-arrow');
-  btns.forEach(function(btn){btn.addEventListener('click',function(){if(btn.classList.contains('ps-prev'))goTo(idx-1);else goTo(idx+1);});});
+  wrapEl.querySelectorAll('.ps-arrow').forEach(function(btn){btn.addEventListener('click',function(){btn.classList.contains('ps-prev')?goTo(idx-1):goTo(idx+1);});});
   cards.forEach(function(card,ci){card.addEventListener('click',function(){openLB(cards,ci);});});
 });
 (function(){
@@ -661,8 +628,7 @@ SLIDERS.forEach(function(s){
   buildDots();window.addEventListener('resize',buildDots);
   function updDots(){dotsEl.querySelectorAll('.vs-dot').forEach(function(d,i){d.classList.toggle('on',i===idx);});}
   function goTo(n){idx=Math.max(0,Math.min(n,maxI()));var cw=cards[0]?cards[0].getBoundingClientRect().width:0;track.style.transform='translateX(-'+(idx*(cw+24))+'px)';updDots();}
-  var vBtns=wrapEl.querySelectorAll('.ps-arrow');
-  vBtns.forEach(function(btn){btn.addEventListener('click',function(){if(btn.classList.contains('ps-prev'))goTo(idx-1);else goTo(idx+1);});});
+  wrapEl.querySelectorAll('.ps-arrow').forEach(function(btn){btn.addEventListener('click',function(){btn.classList.contains('ps-prev')?goTo(idx-1):goTo(idx+1);});});
 })();
 var lb=document.getElementById('lb');var lbImg=document.getElementById('lbImg');var lbBadge=document.getElementById('lbBadge');var lbCap=document.getElementById('lbCap');var lbCount=document.getElementById('lbCount');
 var lbCards=[],lbI=0;
@@ -677,11 +643,16 @@ document.addEventListener('keydown',function(e){if(!lb.classList.contains('open'
 })();
 function toggleVid(id){
   var card=document.getElementById(id);if(!card)return;var vid=card.querySelector('video');if(!vid)return;
-  if(vid.paused){document.querySelectorAll('.vid-card video').forEach(function(v){if(v!==vid){v.pause();v.closest('.vid-card').classList.remove('playing');}});vid.muted=true;var p=vid.play();if(p!==undefined){p.then(function(){card.classList.add('playing');}).catch(function(e){console.warn('play() blocked:',e);});}else{card.classList.add('playing');}}
-  else{vid.pause();card.classList.remove('playing');}
+  if(vid.paused){
+    document.querySelectorAll('.vid-card video').forEach(function(v){if(v!==vid){v.pause();v.closest('.vid-card').classList.remove('playing');}});
+    vid.muted=true;var p=vid.play();
+    if(p!==undefined){p.then(function(){card.classList.add('playing');}).catch(function(e){console.warn('play() blocked:',e);});}
+    else{card.classList.add('playing');}
+  }else{vid.pause();card.classList.remove('playing');}
 }
 function toggleMute(id){
-  var card=document.getElementById(id);if(!card)return;var vid=card.querySelector('video');var btn=card.querySelector('.vid-mute-btn');if(!vid)return;
+  var card=document.getElementById(id);if(!card)return;
+  var vid=card.querySelector('video');var btn=card.querySelector('.vid-mute-btn');if(!vid)return;
   vid.muted=!vid.muted;if(btn)btn.textContent=vid.muted?'🔇':'🔊';
 }
 </script>

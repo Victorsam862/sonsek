@@ -32,16 +32,10 @@
         .nav-toggle.is-open span::after { transform: rotate(-45deg); top: 0; }
         .nav-links { display: none !important; }
         .nav-cta { display: none !important; }
+        .nav-logo { width: 54px !important; height: 54px !important; }
+        .nav-title-sub { display: none !important; }
       }
       @media (max-width: 768px) { .footer-col-links { display: none !important; } }
-
-      @media (max-width: 900px) {
-        .nav-logo { width: 54px !important; height: 54px !important; }
-        .nav-title-main { font-size: 0.82rem !important; }
-        .nav-title-sub { display: none !important; }
-        .footer-logo-img { height: 32px !important; }
-        .footer-logo-name { font-size: 0.82rem !important; }
-      }
     </style>
     <script>
       (function() {
@@ -66,7 +60,7 @@
             <img class="nav-logo" src="assets/img/image.png" alt="Sonsek logo" style="width:64px;height:64px;border-radius:12px;object-fit:contain;" />
             <div class="nav-title">
               <span class="nav-title-main" style="font-size:1.05rem;font-weight:800;letter-spacing:0.01em;line-height:1.2;display:block;"><strong>Sonsek Integrated Services LTD</strong></span>
-              <em class="nav-title-sub" style="font-size:0.67rem;color:var(--color-primary-dark,#1a6b3c);display:block;">Cleaning With Care, Fumigation With Precision</em>
+              <em class="nav-title-sub" style="font-size:0.67rem;color:#1a6b3c;display:block;">Cleaning With Care, Fumigation With Precision</em>
             </div>
           </a>
           <div class="nav-links">
@@ -143,6 +137,7 @@
                   <option value="Fumigation">Fumigation</option>
                   <option value="Pest control">Pest control</option>
                   <option value="Deep cleaning">Deep cleaning</option>
+                  <option value="Marble polishing">Marble polishing</option>
                   <option value="Post-construction cleaning">Post-construction cleaning</option>
                   <option value="Combined cleaning &amp; fumigation">Combined cleaning &amp; fumigation</option>
                 </select>
@@ -172,25 +167,40 @@
           <aside class="card">
             <h2 class="card-title">How to Pay</h2>
             <p class="card-subtitle">Transfer 80% advance payment to the account below to confirm your booking. Send your payment receipt via WhatsApp and we'll get back to you within minutes.</p>
+
             <div style="margin:1.5rem 0;background:linear-gradient(135deg,#0d3d1c,#1a6b3c);border-radius:14px;padding:1.5rem 1.5rem 1.25rem;position:relative;overflow:hidden;">
               <div style="position:absolute;top:-18px;right:-18px;width:80px;height:80px;background:rgba(255,255,255,0.05);border-radius:50%;"></div>
               <div style="position:absolute;bottom:-24px;left:40px;width:100px;height:100px;background:rgba(255,255,255,0.04);border-radius:50%;"></div>
               <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-bottom:1.1rem;">Bank Transfer Details</p>
-              <div style="margin-bottom:1rem;"><p style="font-size:0.68rem;color:rgba(255,255,255,0.5);margin-bottom:0.2rem;text-transform:uppercase;letter-spacing:0.08em;">Bank</p><p style="font-size:1rem;font-weight:700;color:#fff;">FCMB Bank</p></div>
-              <div style="margin-bottom:1rem;"><p style="font-size:0.68rem;color:rgba(255,255,255,0.5);margin-bottom:0.2rem;text-transform:uppercase;letter-spacing:0.08em;">Account Name</p><p style="font-size:1rem;font-weight:700;color:#fff;">Sonsek Integrated Services LTD</p></div>
+              <div style="margin-bottom:1rem;">
+                <p style="font-size:0.68rem;color:rgba(255,255,255,0.5);margin-bottom:0.2rem;text-transform:uppercase;letter-spacing:0.08em;">Bank</p>
+                <p style="font-size:1rem;font-weight:700;color:#fff;">FCMB Bank</p>
+              </div>
+              <div style="margin-bottom:1rem;">
+                <p style="font-size:0.68rem;color:rgba(255,255,255,0.5);margin-bottom:0.2rem;text-transform:uppercase;letter-spacing:0.08em;">Account Name</p>
+                <p style="font-size:1rem;font-weight:700;color:#fff;">Sonsek Integrated Services LTD</p>
+              </div>
               <div style="margin-bottom:1.2rem;">
                 <p style="font-size:0.68rem;color:rgba(255,255,255,0.5);margin-bottom:0.2rem;text-transform:uppercase;letter-spacing:0.08em;">Account Number</p>
                 <div style="display:flex;align-items:center;gap:0.75rem;">
-                  <p style="font-size:1.45rem;font-weight:800;color:#e8c96a;letter-spacing:0.06em;" id="accNum">2006125474</p>
-                  <button onclick="copyAccNum()" id="copyBtn" style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);color:#fff;border-radius:7px;padding:0.35rem 0.8rem;font-size:0.72rem;font-weight:600;cursor:pointer;transition:all 0.2s;white-space:nowrap;">Copy</button>
+                  <p style="font-size:1.45rem;font-weight:800;color:#e8c96a;letter-spacing:0.06em;margin:0;" id="accNum">2006125474</p>
+                  <button type="button" id="copyBtn" onclick="copyAccNum()"
+                    style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);color:#fff;border-radius:7px;padding:0.35rem 0.8rem;font-size:0.72rem;font-weight:600;cursor:pointer;transition:all 0.2s;white-space:nowrap;display:inline-flex;align-items:center;gap:0.3rem;">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                    Copy
+                  </button>
                 </div>
               </div>
-              <div style="background:rgba(255,255,255,0.08);border-radius:8px;padding:0.7rem 0.9rem;font-size:0.78rem;color:rgba(255,255,255,0.75);line-height:1.55;"><strong style="color:#e8c96a;">80% advance</strong> secures your booking &mdash; <strong style="color:#e8c96a;">20% balance</strong> on completion.</div>
+              <div style="background:rgba(255,255,255,0.08);border-radius:8px;padding:0.7rem 0.9rem;font-size:0.78rem;color:rgba(255,255,255,0.75);line-height:1.55;">
+                <strong style="color:#e8c96a;">80% advance</strong> secures your booking &mdash; <strong style="color:#e8c96a;">20% balance</strong> on completion.
+              </div>
             </div>
+
             <a href="https://wa.me/2349024524116?text=Hello%20Sonsek%2C%20I%27ve%20made%20my%20advance%20payment.%20Please%20find%20my%20receipt%20attached." target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:0.6rem;width:100%;background:#25D366;color:#fff;border-radius:10px;padding:0.85rem 1rem;font-weight:700;font-size:0.92rem;text-decoration:none;margin-bottom:1rem;box-sizing:border-box;transition:background 0.2s;">
-              <svg viewBox="0 0 24 24" fill="#fff" width="20" height="20" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              <svg viewBox="0 0 24 24" fill="#fff" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
               Send Receipt via WhatsApp
             </a>
+
             <div style="margin-top:0.5rem;padding-top:1.25rem;border-top:1px solid var(--color-border,#e5e7eb);">
               <h3 class="card-title" style="font-size:0.95rem;">We serve all of Nigeria</h3>
               <p style="font-size:0.88rem;color:var(--color-muted);">Whether you&#39;re in Abuja, Lagos, Port Harcourt, Kano, Enugu or anywhere across Nigeria &mdash; we come to you.</p>
@@ -213,9 +223,9 @@
                 <span class="footer-logo-sub" style="display:block;color:rgba(255,255,255,0.5);font-size:0.67rem;margin-top:2px;">RC: 8393295</span>
               </div>
             </div>
-            <p class="footer-meta">Trusted 24/7 cleaning partner for homes, offices, and facilities across Nigeria. Based in Abuja, FCT. Safe products, vetted staff, and visible results after every visit.</p>
+            <p class="footer-meta">Trusted 24/7 cleaning partner for homes, offices, and facilities across Nigeria. Based in Abuja, FCT.</p>
           </div>
-          <div class="footer-col-links" style="display:block;">
+          <div class="footer-col-links">
             <div class="footer-heading">Quick links</div>
             <ul class="footer-links">
               <li><a href="about.html">About us</a></li>
@@ -234,11 +244,11 @@
               <li>Head Office: Nyanya, Abuja, FCT</li>
               <li>Coverage: Nationwide &ndash; all states</li>
             </ul>
-            <div class="social-row" style="margin-top:1rem;display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+            <div style="margin-top:1rem;display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
               <span style="color:rgba(255,255,255,0.75);font-size:0.82rem;font-weight:600;display:block;width:100%;margin-bottom:0.3rem;">Follow us:</span>
-              <a href="https://www.facebook.com/share/1HHNgoJynz/" target="_blank" rel="noopener" aria-label="Sonsek on Facebook" style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);flex-shrink:0;"><svg viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987H7.898V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg></a>
-              <a href="https://www.instagram.com/sonsekltd?igsh=MTJ1NHJsYWU1d2xsMQ==" target="_blank" rel="noopener" aria-label="Sonsek on Instagram" style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);flex-shrink:0;"><svg viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
-              <a href="https://wa.me/2349024524116" target="_blank" rel="noopener" aria-label="Sonsek on WhatsApp" style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);flex-shrink:0;"><svg viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+              <a href="https://www.facebook.com/share/1HHNgoJynz/" target="_blank" rel="noopener" aria-label="Facebook" style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);flex-shrink:0;"><svg viewBox="0 0 24 24" fill="#fff"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987H7.898V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg></a>
+              <a href="https://www.instagram.com/sonsekltd?igsh=MTJ1NHJsYWU1d2xsMQ==" target="_blank" rel="noopener" aria-label="Instagram" style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);flex-shrink:0;"><svg viewBox="0 0 24 24" fill="#fff"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+              <a href="https://wa.me/2349024524116" target="_blank" rel="noopener" aria-label="WhatsApp" style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);flex-shrink:0;"><svg viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
             </div>
           </div>
         </div>
@@ -249,18 +259,72 @@
       </div>
     </footer>
 
-    <div style="position:fixed;bottom:24px;right:24px;z-index:9999;">
-      <a href="https://wa.me/2349024524116?text=Hello%20Sonsek%2C%20I%27d%20like%20to%20book%20a%20cleaning%20service."
-         target="_blank" rel="noopener" aria-label="Chat on WhatsApp"
-         style="display:flex;align-items:center;justify-content:center;width:60px;height:60px;border-radius:50%;background:#25D366;text-decoration:none;box-shadow:0 4px 16px rgba(37,211,102,0.5);">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32">
-          <path fill="#ffffff" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 15 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67M8.53 7.33C8.37 7.33 8.1 7.39 7.87 7.64C7.65 7.89 7 8.5 7 9.71C7 10.93 7.89 12.1 8 12.27C8.14 12.44 9.76 14.94 12.25 16C12.84 16.27 13.3 16.42 13.66 16.53C14.25 16.72 14.79 16.69 15.22 16.63C15.7 16.56 16.68 16.03 16.89 15.45C17.1 14.87 17.1 14.38 17.04 14.27C16.97 14.17 16.81 14.11 16.56 14C16.31 13.86 15.09 13.26 14.87 13.18C14.64 13.1 14.5 13.06 14.31 13.3C14.15 13.55 13.67 14.11 13.53 14.27C13.38 14.44 13.24 14.46 13 14.34C12.74 14.21 11.94 13.88 11 13.05C10.26 12.38 9.77 11.56 9.62 11.31C9.47 11.07 9.6 10.93 9.72 10.81C9.83 10.7 9.97 10.52 10.08 10.38C10.2 10.24 10.24 10.14 10.32 9.97C10.4 9.81 10.36 9.67 10.3 9.55C10.24 9.44 9.77 8.2 9.57 7.73C9.37 7.26 9.17 7.33 9 7.32H8.53Z"/>
-        </svg>
+    <!-- WhatsApp Float -->
+    <div style="position:fixed;bottom:40px;right:24px;z-index:9999;">
+      <a href="https://wa.me/2349024524116?text=Hello%20Sonsek%2C%20I%27d%20like%20to%20book%20a%20cleaning%20service." target="_blank" rel="noopener" aria-label="Chat on WhatsApp" style="display:flex;align-items:center;justify-content:center;width:58px;height:58px;border-radius:16px;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,.45),0 2px 8px rgba(0,0,0,.18);background:radial-gradient(circle at 30% 107%,#25d366 0%,#128c7e 60%,#075e54 90%);transition:transform .2s,box-shadow .2s;" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 28px rgba(37,211,102,.55),0 4px 12px rgba(0,0,0,.2)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 4px 20px rgba(37,211,102,.45),0 2px 8px rgba(0,0,0,.18)'">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="34" height="34" fill="none"><path fill="#fff" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path fill="#fff" fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 1.89.523 3.656 1.435 5.163L2 22l4.926-1.41A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.182a8.182 8.182 0 01-4.274-1.204l-.306-.183-3.172.907.894-3.265-.2-.332A8.182 8.182 0 1112 20.182z"/></svg>
       </a>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script>
+      /* ── COPY ACCOUNT NUMBER ─────────────────────────────────────────────
+         copyAccNum() must be on window scope because the button uses onclick=""
+      ──────────────────────────────────────────────────────────────────────*/
+      function copyAccNum() {
+        var numEl = document.getElementById('accNum');
+        var btn   = document.getElementById('copyBtn');
+        if (!numEl || !btn) return;
+
+        var accNumber = numEl.textContent.trim();
+
+        /* Modern Clipboard API — works on all current browsers */
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(accNumber).then(function() {
+            showCopied(btn);
+          }).catch(function() {
+            fallbackCopy(accNumber, btn);
+          });
+        } else {
+          /* Fallback for older browsers / non-HTTPS */
+          fallbackCopy(accNumber, btn);
+        }
+      }
+
+      function fallbackCopy(text, btn) {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.cssText = 'position:fixed;top:-9999px;left:-9999px;opacity:0';
+        document.body.appendChild(ta);
+        ta.focus();
+        ta.select();
+        try {
+          document.execCommand('copy');
+          showCopied(btn);
+        } catch(e) {
+          /* If all else fails, show the number prominently */
+          btn.textContent = 'See above';
+        }
+        document.body.removeChild(ta);
+      }
+
+      function showCopied(btn) {
+        /* Change button to green tick feedback */
+        btn.style.background = 'rgba(34,197,94,0.25)';
+        btn.style.borderColor = 'rgba(34,197,94,0.6)';
+        btn.style.color = '#86efac';
+        btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Copied!';
+
+        /* Reset after 2.5 seconds */
+        setTimeout(function() {
+          btn.style.background = 'rgba(255,255,255,0.12)';
+          btn.style.borderColor = 'rgba(255,255,255,0.2)';
+          btn.style.color = '#fff';
+          btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> Copy';
+        }, 2500);
+      }
+
+      /* ── EMAILJS FORM ──────────────────────────────────────────────────── */
       (function(){
         emailjs.init('H_xGDByxw8GyI06yX');
         function handleForm(form) {
